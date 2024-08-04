@@ -4,38 +4,44 @@ const css = ({ size, expanded, expandOnHover }) => /*css*/`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
     text-decoration: none;
-    color: inherit;
-    border: 1px solid #3f4551;
+    border: 2px solid #3f4551;
     border-radius: 50px;
-    padding: 10px 0px 10px 10px;
-    padding-right: ${expanded ? '10px' : 0};
+    padding: 10px;
+    padding-right: ${expanded ? '20px' : '10px'};
     transition: all 400ms ease;
-    font-family: var(--font-family);
     color: var(--font-color);
     overflow: hidden;
   }
 
-  .link:hover {
-    padding-right: 10px;
-  }
-
-  .link:hover .display-name {
-      max-width: ${expanded ? 'none' : expandOnHover ? '128px' : 0};
+  .link:hover,
+  :host(.automated-hover) .link {
+    padding-right: 20px;
   }
 
   .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: ${size || 32}px;
+    width: ${size || 32}px;
+    aspect-ratio: 1 / 1;
     color: var(--icon-color);
     display: flex;
     align-items: center;
   }
 
   .display-name {
+    position: relative;
+    left: 10px;
     font-weight: bold;
     max-width: ${expanded ? 'none' : 0};
     transition: all 500ms ease;
+  }
+
+  .link:hover .display-name,
+  :host(.automated-hover) .display-name {
+    max-width: ${expanded ? 'none' : expandOnHover ? '128px' : 0};
   }
 `;
 

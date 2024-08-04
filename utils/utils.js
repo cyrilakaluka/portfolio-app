@@ -7,12 +7,12 @@ cssResetStyle.replaceSync(cssReset);
  * Renders the HTML by combining the template and styles.
  * @element {HTMLElement}
  */
-export function renderHtml(element, { template, style, context, ignoreCssReset }) {
+export function renderHtml(element, { template, style, context, noCssReset }) {
   if (!element.shadowRoot) {
     element.attachShadow({ mode: 'open' });
   }
 
-  if (!ignoreCssReset) {
+  if (!noCssReset) {
     element.shadowRoot.adoptedStyleSheets = [cssResetStyle];
   }
 

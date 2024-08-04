@@ -9,6 +9,8 @@ class SocialMediaLink extends HTMLElement {
     linkedin: "LinkedIn"
   };
 
+  static automatedHoverClass = 'automated-hover';
+
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -33,6 +35,17 @@ class SocialMediaLink extends HTMLElement {
     };
 
     renderHtml(this, { template, style, context });
+    this.$host = this.shadowRoot.host;
+  }
+
+  activateHover() {
+    if (!this.$host.classList.contains(SocialMediaLink.automatedHoverClass)) {
+      this.$host.classList.add(SocialMediaLink.automatedHoverClass);
+    }
+  }
+
+  deactivateHover() {
+    this.$host.classList.remove(SocialMediaLink.automatedHoverClass);
   }
 }
 

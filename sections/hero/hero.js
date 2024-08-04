@@ -10,6 +10,25 @@ class Hero extends HTMLElement {
 
   connectedCallback() {
     renderHtml(this, { template, style });
+    this.$socials = this.shadowRoot.getElementById('socials');
+    this.$socials.addEventListener('mouseenter', this.#activateAllSocialLinksHover.bind(this));
+    this.$socials.addEventListener('mouseleave', this.#deactivateAllSocialLinksHover.bind(this));
+  }
+
+  #activateAllSocialLinksHover() {
+    this.#getSocialLinks().forEach(x => {
+      x.activateHover();
+    });
+  }
+
+  #deactivateAllSocialLinksHover() {
+    this.#getSocialLinks().forEach(x => {
+      x.deactivateHover();
+    });
+  }
+
+  #getSocialLinks() {
+    return this.$socials.querySelectorAll('app-social-media');
   }
 }
 

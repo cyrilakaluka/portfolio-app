@@ -2,6 +2,7 @@ const css = /*css*/`
   :host {
     display: flex;
     flex-direction: row;
+    gap: 40px;
     height: 100vh;
   }
 
@@ -9,31 +10,65 @@ const css = /*css*/`
     flex: 1;
   }
 
+  /* 
+   * content section
+  */
   .content {
     display: flex;
+    flex-grow: 1.5;
     flex-direction: column;
     justify-content: center;
   }
 
   .greeting {
-    color: var(--accent-color);
     font-size: 32px;
-    font-weight: normal;
-    margin-bottom: 10px;
+    color: var(--accent-color);
+    margin-bottom: 16px;
   }
 
   .name {
-    font-size: 128px;
-    margin-bottom: 20px;
+    font-size: 72px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
   }
 
   .role {
-    font-size: 40px;
-    font-weight: normal;
-    margin-bottom: 40px;
-    opacity: 0.7;
+    font-size: 32px;
+    color: var(--accent-color);
+    margin-bottom: 16px;
   }
 
+  .summary {
+    font-size: 20px;
+    opacity: 0.7;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 40px;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+
+  .socials {
+    display: flex;
+    gap: 20px;
+    width: min-content;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    border: 1px solid #232935;
+  }
+
+  .socials:hover {
+    border-color: var(--accent-color);
+  }
+
+  /* 
+   * image section 
+  */
   .image {
     display: flex;
     align-items: center;
@@ -57,7 +92,7 @@ const css = /*css*/`
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 100%;
-    border: 10px solid var(--bg-color);
+    border: 5px solid var(--bg-color);
   }
 
   .frame > img {
