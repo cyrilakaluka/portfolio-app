@@ -13,7 +13,8 @@ class Button extends HTMLElement {
 
   connectedCallback() {
     const context = {
-      type: this.dataset.type
+      type: this.getAttribute('type'),
+      variant: this.getAttribute('variant')
     };
     renderHtml(this, { template, style, context });
   }

@@ -9,8 +9,8 @@ export default  /*html*/`
       </p>
     </div>
     <div class="buttons">
-      <app-button>Hire Me</app-button>
-      <app-button>Download Resume</app-button>
+      <app-button variant="solid">Hire Me</app-button>
+      <app-button variant="outline">Download Resume</app-button>
     </div>
     <div id="socials" class="socials">
       <app-social-media size="24" name="linkedin" behavior="expanded"></app-social-media>

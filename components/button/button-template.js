@@ -1,5 +1,5 @@
-export default ({ type }) => /*html*/`
-  <button class="button" type="${type || 'button'}">
+export default ({ type, variant }) => /*html*/`
+  <button class="button ${variant || 'default'}" type="${type || 'button'}">
     <slot></slot>
   </button>
 `;
