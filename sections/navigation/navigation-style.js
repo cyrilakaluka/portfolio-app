@@ -3,8 +3,6 @@ const css = /*css*/`
     position: fixed;
     display: flex;
     align-items: center;
-    color: var(--font-color);
-    font-family: var(--font-family);
     font-size: 16px;
     width: 100%;
     max-width: inherit;
