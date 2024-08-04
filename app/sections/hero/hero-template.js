@@ -20,7 +20,7 @@ export default  /*html*/`
   </div>
   <div class="image">
     <div class="frame">
-      <img src="/assets/hero.jpg" alt="hero">
+      <img src="./assets/hero.jpg" alt="hero">
     </div>
   </div>
 `;
