@@ -7,7 +7,9 @@ export default  /*html*/`
     </div>
     <app-button>Hire Me</app-button>
   </div>
-  <div class="image-container">
-    <img src="/assets/hero.jpg" alt="hero">
+  <div class="image">
+    <div class="frame">
+      <img src="/assets/hero.jpg" alt="hero">
+    </div>
   </div>
 `;

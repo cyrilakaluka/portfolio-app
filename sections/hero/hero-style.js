@@ -34,14 +34,33 @@ const css = /*css*/`
     opacity: 0.7;
   }
 
-  .image-container {
+  .image {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .frame {
+    position: relative;
+    display: flex;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    border: 10px solid var(--accent-color);
     overflow: hidden;
   }
 
-  .image-container > img {
+  .frame::before {
+    position: absolute;
+    content: '';
+    background-color: transparent;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    border: 10px solid var(--bg-color);
+  }
+
+  .frame > img {
     object-fit: cover;
   }
 `;
