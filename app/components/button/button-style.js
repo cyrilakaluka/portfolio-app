@@ -23,6 +23,7 @@ const css = /*css*/`
   } 
 
   .button.outline {
+    border: none;
     outline: 1px solid var(--accent-color);
     color: var(--font-color);
     background: transparent;
