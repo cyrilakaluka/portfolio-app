@@ -7,8 +7,8 @@ const svg = /*html*/`
   </svg>
 `;
 
-function wrapLink(href) {
+function wrapInLinkTag(href) {
   return /*html*/ `<a href="${href}">${svg}</a>`;
 }
 
-export default ({ href }) => href && wrapLink(href) || svg;
+export default ({ href }) => href && wrapInLinkTag(href) || svg;
