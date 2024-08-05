@@ -1,12 +1,11 @@
 const css = /*css*/`
   :host {
-    position: fixed;
     display: flex;
     align-items: center;
     font-size: 16px;
     width: 100%;
     max-width: inherit;
-    padding: 10px 0px;
+    height: 80px;
   }
 
   .nav-items {

@@ -1,7 +1,4 @@
-import cssReset from "./css-reset.js";
-
-const cssResetStyle = new CSSStyleSheet();
-cssResetStyle.replaceSync(cssReset);
+import { cssResetStyleSheet } from "./css-reset.js";
 
 /**
  * Renders the HTML by combining the template and styles.
@@ -13,7 +10,7 @@ export function renderHtml(element, { template, style, context, noCssReset }) {
   }
 
   if (!noCssReset) {
-    element.shadowRoot.adoptedStyleSheets = [cssResetStyle];
+    element.shadowRoot.adoptedStyleSheets = [cssResetStyleSheet];
   }
 
   const t = typeof template === 'function' ? template(context) : template;

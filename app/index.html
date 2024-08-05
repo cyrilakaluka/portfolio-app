@@ -17,7 +17,7 @@
   <style>
     :root {
       --font-family: 'Lato', sans-serif;
-      --bg-color: #070e1c;
+      --background-color: #070e1c;
       --accent-color: #fec643;
       --font-color: #fafafa;
       --alt-font-color: #212121;
@@ -25,14 +25,18 @@
     }
 
     body {
-      background-color: var(--bg-color);
+      background-color: var(--background-color);
     }
   </style>
+  <script type="module">
+    import { cssResetStyle } from './utils/css-reset.js';
+    document.head.appendChild(cssResetStyle);
+  </script>
 </head>
 
 <body>
   <app-layout>
-    <app-navigation></app-navigation>
+    <app-navigation slot="header"></app-navigation>
     <app-landing></app-landing>
   </app-layout>
 </body>

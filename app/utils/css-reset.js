@@ -1,4 +1,4 @@
-export default /*css*/`
+const css = /*css*/`
   /*
     1. Use a more-intuitive box-sizing model.
   */
@@ -15,41 +15,50 @@ export default /*css*/`
     Typographic tweaks!
     3. Add accessible line-height
     4. Improve text rendering
+    5. Set default font and color properties
   */
-  body {
+  body,
+  :host {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-family);
+    color: var(--font-color);
   }
   /*
-    5. Improve media defaults
+    6. Improve media defaults
   */
   img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
   }
   /*
-    6. Remove built-in form typography styles
+    7. Remove built-in form typography styles
   */
   input, button, textarea, select {
     font: inherit;
   }
   /*
-    7. Avoid text overflows
+    8. Avoid text overflows
   */
   p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
   }
   /*
-    8. Create a root stacking context
+    9. Create a root stacking context
   */
   #root, #__next {
     isolation: isolate;
   }
-  /*
-    9. Set default :host properties for shadow DOM
-  */
-  :host {
-    font-family: var(--font-family);
-    color: var(--font-color);
-  }
 `;
+
+const cssResetStyle = document.createElement('style');
+cssResetStyle.textContent = css;
+
+const cssResetStyleSheet = new CSSStyleSheet();
+cssResetStyleSheet.replaceSync(css);
+
+export {
+  cssResetStyle,
+  cssResetStyleSheet
+};

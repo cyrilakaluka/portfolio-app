@@ -92,7 +92,7 @@ const css = /*css*/`
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 100%;
-    border: 5px solid var(--bg-color);
+    border: 5px solid var(--background-color);
   }
 
   .frame > img {
