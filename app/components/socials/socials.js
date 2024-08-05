@@ -3,12 +3,6 @@ import style from './socials-style.js';
 import { renderHtml } from '../../utils/utils.js';
 
 class SocialMediaLink extends HTMLElement {
-  static displayNameMap = {
-    facebook: "Facebook",
-    twitter: "Twitter",
-    linkedin: "LinkedIn"
-  };
-
   static automatedHoverClass = 'automated-hover';
 
   constructor() {
@@ -26,8 +20,8 @@ class SocialMediaLink extends HTMLElement {
 
   connectedCallback() {
     const context = {
-      name: this.name,
-      displayName: SocialMediaLink.displayNameMap[this.name],
+      name: this.name.toLocaleLowerCase(),
+      displayName: this.name,
       size: this.getAttribute('size'),
       expanded: this.behavior === 'expanded',
       expandOnHover: this.behavior === 'expand-on-hover',
