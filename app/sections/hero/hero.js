@@ -9,19 +9,22 @@ class Hero extends BaseComponent {
   connectedCallback() {
     this.render();
     this.$socials = this.shadowRoot.querySelector('.socials');
-    this.$socials.addEventListener('mouseenter', this.#activateAllSocialLinksHover.bind(this));
-    this.$socials.addEventListener('mouseleave', this.#deactivateAllSocialLinksHover.bind(this));
+    this.$socials.addEventListener('mouseenter', this.#expandAllSocialLinks.bind(this));
+    this.$socials.addEventListener('mouseleave', this.#restoreAllSocialLinksOriginalState.bind(this));
   }
 
-  #activateAllSocialLinksHover() {
+  #expandAllSocialLinks() {
     this.#getSocialLinks().forEach(x => {
-      x.activateHover();
+      const originalState = x.getAttribute('state');
+      x.setAttribute('original-state', originalState);
+      x.setAttribute('state', 'expanded');
     });
   }
 
-  #deactivateAllSocialLinksHover() {
+  #restoreAllSocialLinksOriginalState() {
     this.#getSocialLinks().forEach(x => {
-      x.deactivateHover();
+      const originalState = x.getAttribute('original-state');
+      x.setAttribute('state', originalState);
     });
   }
 

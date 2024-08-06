@@ -1,4 +1,4 @@
-const css = ({ size, expanded, expandOnHover }) => /*css*/`
+const css = ({ size }) => /*css*/`
   @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css);
   .link {
     display: inline-flex;
@@ -8,15 +8,35 @@ const css = ({ size, expanded, expandOnHover }) => /*css*/`
     border: 2px solid var(--dark-grey);
     border-radius: 50px;
     padding: 10px;
-    padding-right: ${expanded ? '20px' : '10px'};
     transition: all 400ms ease;
     color: var(--font-color);
     overflow: hidden;
   }
 
-  .link:hover,
-  :host(.automated-hover) .link {
+  :host([state="expanded"]) .link {
     padding-right: 20px;
+  }
+
+  :host([state="expand-on-hover"]) .link,
+  :host([state="collapsed"]) .link {
+    padding-right: 10px;
+  }
+
+  :host([state="expanded"]) .display-name {
+    max-width: 128px;
+  }
+
+  :host([state="collapsed"]) .display-name,
+  :host([state="expand-on-hover"]) .display-name {
+    max-width: 0;
+  }
+
+  :host([state="expand-on-hover"]) .link:hover {
+    padding-right: 20px;
+  }
+
+  :host([state="expand-on-hover"]) .link:hover .display-name {
+    max-width: 128px;
   }
 
   .icon {
@@ -35,13 +55,8 @@ const css = ({ size, expanded, expandOnHover }) => /*css*/`
     position: relative;
     left: 10px;
     font-weight: bold;
-    max-width: ${expanded ? 'none' : 0};
+    max-width: 0;
     transition: all 500ms ease;
-  }
-
-  .link:hover .display-name,
-  :host(.automated-hover) .display-name {
-    max-width: ${expanded ? 'none' : expandOnHover ? '128px' : 0};
   }
 `;
 

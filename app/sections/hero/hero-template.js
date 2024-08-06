@@ -112,10 +112,10 @@ export default  /*html*/`
       <app-button variant="outline">Download Resume</app-button>
     </div>
     <div class="socials">
-      <app-social-media size="24" name="LinkedIn" behavior="expanded"></app-social-media>
-      <app-social-media size="24" name="Facebook" behavior="expand-on-hover"></app-social-media>
-      <app-social-media size="24" name="Twitter" behavior="expand-on-hover"></app-social-media>
-      <app-social-media size="24" name="WhatsApp" behavior="expand-on-hover"></app-social-media>
+      <app-social-media size="24" name="LinkedIn" state="expanded"></app-social-media>
+      <app-social-media size="24" name="Facebook" state="expand-on-hover"></app-social-media>
+      <app-social-media size="24" name="Twitter" state="expand-on-hover"></app-social-media>
+      <app-social-media size="24" name="WhatsApp" state="expand-on-hover"></app-social-media>
     </div>
   </app-media-block>
 `;
