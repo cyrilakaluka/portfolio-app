@@ -1,6 +1,6 @@
-import { cssResetStyleSheet } from './css-reset.js';
-
 class BaseComponent extends HTMLElement {
+  static cssResetStyleSheet = null;
+
   /**
    * @param {Function|string} template - The template to render.
    * @param {Function|string} style - The style to render.
@@ -22,10 +22,32 @@ class BaseComponent extends HTMLElement {
    */
   render(props) {
     if (!this.$options.noCssReset) {
-      this.shadowRoot.adoptedStyleSheets = [cssResetStyleSheet];
+      this.#ensureCssResetStyleSheetInitialization();
+      this.shadowRoot.adoptedStyleSheets = [BaseComponent.cssResetStyleSheet];
     }
 
     this.shadowRoot.innerHTML = typeof this.$template === 'function' ? this.$template(props) : this.$template;
+  }
+
+  #ensureCssResetStyleSheetInitialization() {
+    if (!BaseComponent.cssResetStyleSheet) {
+      const linkElement = document.querySelector('link#css-reset');
+      if (linkElement) {
+        for (const sheet of document.styleSheets) {
+          if (sheet.href === linkElement.href) {
+            const styleSheet = new CSSStyleSheet();
+            const cssText = Array.from(sheet.cssRules).map(rule => rule.cssText).join('');
+            styleSheet.replaceSync(cssText);
+            BaseComponent.cssResetStyleSheet = styleSheet;
+            break;
+          }
+        }
+      }
+    }
+
+    if (!BaseComponent.cssResetStyleSheet) {
+      console.error('No CSS reset stylesheet found');
+    }
   }
 }
 
