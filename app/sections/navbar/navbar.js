@@ -1,8 +1,8 @@
-import template from './navigation-template.js';
+import template from './navbar-template.js';
 import BaseComponent from '../../common/BaseComponent.js';
 
 
-class Navigation extends BaseComponent {
+class NavBar extends BaseComponent {
   constructor() {
     super(template);
   }
@@ -12,4 +12,4 @@ class Navigation extends BaseComponent {
   }
 }
 
-customElements.define('app-navigation', Navigation);
+customElements.define('app-navbar', NavBar);

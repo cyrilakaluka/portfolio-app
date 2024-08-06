@@ -8,7 +8,6 @@ class Logo extends BaseComponent {
 
   connectedCallback() {
     const props = {
-      size: this.dataset.size,
       href: this.dataset.href
     };
 

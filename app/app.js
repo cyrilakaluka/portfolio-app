@@ -13,7 +13,7 @@ class App extends HTMLElement {
   render() {
     this.innerHTML = /*html*/`
       <app-layout>
-        <app-navigation slot="header"></app-navigation>
+        <app-navbar slot="header"></app-navbar>
         <app-hero id="home" slot="hero"></app-hero>
         <app-about-me id="about"></app-about-me>
         <app-skills id="skills"></app-skills>

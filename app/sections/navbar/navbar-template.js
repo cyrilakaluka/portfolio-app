@@ -44,15 +44,15 @@ const css = /*css*/`
     color: var(--accent-color);
   }
 
-  .logo-link {
-    width: 50px;
+  .logo {
+    width: 128px;
   }
 `;
 
 export default () => /*html*/`
   <style>${css}</style>
-  <app-logo data-size="50" data-href="#home"></app-logo>
-  <div class="nav-items">
+  <app-logo class="logo" data-href="#home"></app-logo>
+  <nav class="nav-items">
     <ul class="nav-links">
       <li class="nav-link"><a href="">Home</a></li>
       <li class="nav-link"><a href="">About</a></li>
@@ -64,5 +64,5 @@ export default () => /*html*/`
       <app-icon name="call" fill="1"></app-icon>
       <span class="phone-number">+372 5324 5984</span>
     </div>
-  </div>
+  </nav>
 `;
