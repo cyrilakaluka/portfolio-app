@@ -63,10 +63,7 @@ const css = ({ contentSizeRatio, reverse }) => /*css*/`
 
 export default ({ blockTitle, imageUrl, imageFrame, contentSizeRatio, reverse }) => /*html*/`
   <style>${css({ contentSizeRatio, reverse })}</style>
-  <div class="content">
-    <slot></slot>
-  </div>
-  
+  <slot class="content"></slot>
   <div class="image">
     <div class="frame ${imageFrame || 'rounded'}">
       <img src="${imageUrl}" alt="${blockTitle}">

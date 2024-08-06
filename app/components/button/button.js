@@ -3,9 +3,6 @@ import style from './button-style.js';
 import { renderHtml } from '../../utils/utils.js';
 
 class Button extends HTMLElement {
-  /**
-   *
-   */
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });

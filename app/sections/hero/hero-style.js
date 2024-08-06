@@ -11,13 +11,6 @@ const css = /*css*/`
   /* 
    * content section
   */
-  /* .content {
-    display: flex;
-    flex-grow: 1.5;
-    flex-direction: column;
-    justify-content: center;
-  } */
-
   .greeting {
     font-size: 32px;
     color: var(--accent-color);
@@ -40,7 +33,6 @@ const css = /*css*/`
     font-size: 20px;
     opacity: 0.7;
     text-align: justify;
-    text-justify: inter-word;
     margin-bottom: 40px;
   }
 

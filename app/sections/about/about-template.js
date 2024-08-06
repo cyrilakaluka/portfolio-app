@@ -6,22 +6,44 @@ const css = /*css*/`
     width: 100%;
   }
 
-  .body {
-    color: blue;
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .introduction {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .job-role {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+  }
+
+  .summary {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    opacity: 0.7;
+    text-align: justify;
   }
 `;
 
 export default /*html*/`
   <style>${css}</style>
   <app-section data-title="About Me">
-    <app-media-block block-title="About" image-url="${imageSrc}" image-frame="rect" reverse content-size-ratio="1.3">
+    <app-media-block block-title="About" image-url="${imageSrc}" image-frame="rect" reverse content-size-ratio="1.2">
       <div class="content">
-        <div class="introduction"></div>
-        <div class="job-role"></div>
+        <div class="introduction">Hi There! I'm Cyril Akaluka</div>
+        <div class="job-role">Full-Stack Developer</div>
         <div class="summary">
-          I am a results-driven software engineer with over nine years of experience in designing and implementing robust software solutions. My expertise spans a wide range of programming languages and technologies, including both front-end and back-end development as well as cloud technologies. Throughout my career, I have consistently delivered high-quality, scalable, and maintainable code, making significant contributions to the success of the projects I have been involved in.
+          I am a results-driven full-stack developer with over nine years of experience in designing and implementing robust software solutions. My expertise spans a wide range of programming languages and technologies, including both front-end and back-end development as well as cloud technologies. Throughout my career, I have consistently delivered high-quality, scalable, and maintainable code, making significant contributions to the success of the projects I have been involved in.
         </div>
       </div>
+      <app-button variant="outline">Download Resume</app-button>
     </app-media-block>
   </app-section>
 `;
