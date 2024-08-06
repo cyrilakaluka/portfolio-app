@@ -5,7 +5,7 @@ const css = /*css*/`
     font-size: 16px;
     width: 100%;
     max-width: inherit;
-    height: 80px;
+    height: var(--nav-height);
   }
 
   .nav-items {

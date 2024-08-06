@@ -1,7 +1,13 @@
 const css = /*css*/`
   :host {
     display: block;
-    height: 100vh;
+    height: calc(100vh - var(--nav-height));
+  }
+
+  :host::before {
+    content: '';
+    display: block;
+    height: var(--nav-height);
   }
 
   app-media-block {
@@ -23,7 +29,7 @@ const css = /*css*/`
     margin-bottom: 24px;
   }
 
-  .role {
+  .job-role {
     font-size: 32px;
     color: var(--accent-color);
     margin-bottom: 16px;
@@ -96,7 +102,7 @@ export default  /*html*/`
     <div class="text">
       <h3 class="greeting">Hey there!, I'm</h3>
       <h1 class="name">Cyril Akaluka</h1>
-      <h2 class="role">Full-Stack Developer</h2>
+      <h2 class="job-role">Full-Stack Developer</h2>
       <p class="summary">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, facere quod aliquid assumenda accusamus inventore expedita, quos aut doloribus veritatis voluptatibus fugiat corrupti at ad esse perferendis! Adipisci, quas error.
       </p>
@@ -105,7 +111,7 @@ export default  /*html*/`
       <app-button variant="solid">Hire Me</app-button>
       <app-button variant="outline">Download Resume</app-button>
     </div>
-    <div id="socials" class="socials">
+    <div class="socials">
       <app-social-media size="24" name="LinkedIn" behavior="expanded"></app-social-media>
       <app-social-media size="24" name="Facebook" behavior="expand-on-hover"></app-social-media>
       <app-social-media size="24" name="Twitter" behavior="expand-on-hover"></app-social-media>

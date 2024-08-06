@@ -7,6 +7,11 @@ export default /*html*/`
       width: 100%;
     }
 
+    slot {
+      width: inherit;
+      max-width: inherit;
+    }
+
     .container {
       max-width: 1200px;
       padding-left: 20px;
@@ -22,9 +27,11 @@ export default /*html*/`
       z-index: 99999;
     }
 
-    slot {
-      width: inherit;
-      max-width: inherit;
+    .sections {
+      display: flex;
+      flex-direction: column;
+      margin-top: 100px;
+      gap: 200px;
     }
   </style>
   <header class="header">
@@ -33,6 +40,7 @@ export default /*html*/`
     </div>
   </header>
   <main class="container">
-    <slot></slot>
+    <slot name="hero"></slot>
+    <slot class="sections"></slot>
   </main>
 `;

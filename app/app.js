@@ -14,9 +14,11 @@ class App extends HTMLElement {
     this.innerHTML = /*html*/`
       <app-layout>
         <app-navigation slot="header"></app-navigation>
-        <app-hero></app-hero>
-        <app-about-me></app-about-me>
-        <app-skills></app-skills>
+        <app-hero id="home" slot="hero"></app-hero>
+        <app-about-me id="about"></app-about-me>
+        <app-skills id="skills"></app-skills>
+        <app-resume id="resume"></app-resume>
+        <app-contact id="contact"></app-contact>
       </app-layout>
     `;
   }

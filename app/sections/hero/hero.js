@@ -8,7 +8,7 @@ class Hero extends BaseComponent {
 
   connectedCallback() {
     this.render();
-    this.$socials = this.shadowRoot.getElementById('socials');
+    this.$socials = this.shadowRoot.querySelector('.socials');
     this.$socials.addEventListener('mouseenter', this.#activateAllSocialLinksHover.bind(this));
     this.$socials.addEventListener('mouseleave', this.#deactivateAllSocialLinksHover.bind(this));
   }
