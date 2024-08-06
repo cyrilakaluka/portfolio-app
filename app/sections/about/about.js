@@ -1,14 +1,13 @@
 import template from "./about-template.js";
-import { renderHtml } from "../../utils/utils.js";
+import BaseComponent from "../../common/BaseComponent.js";
 
-class AboutMe extends HTMLElement {
+class AboutMe extends BaseComponent {
   constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
+    super(template);
   }
 
   connectedCallback() {
-    renderHtml(this, { template });
+    this.render();
   }
 }
 

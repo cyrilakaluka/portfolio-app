@@ -1,19 +1,14 @@
 import template from './navigation-template.js';
-import style from './navigation-style.js';
-import { renderHtml } from '../../utils/utils.js';
+import BaseComponent from '../../common/BaseComponent.js';
 
 
-class Navigation extends HTMLElement {
-  /**
-   *
-   */
+class Navigation extends BaseComponent {
   constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
+    super(template);
   }
 
   connectedCallback() {
-    renderHtml(this, { template, style });
+    this.render();
   }
 }
 

@@ -1,17 +1,13 @@
-import { renderHtml } from "../../utils/utils.js";
+import BaseComponent from "../../common/BaseComponent.js";
 import template from "./icon-template.js";
 
-class GoogleMaterialIcon extends HTMLElement {
-  /**
-   *
-   */
+class GoogleMaterialIcon extends BaseComponent {
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+    super(template);
   }
 
   connectedCallback() {
-    const context = {
+    const props = {
       name: this.getAttribute('name'),
       size: this.getAttribute('size'),
       fill: this.getAttribute('fill'),
@@ -21,7 +17,7 @@ class GoogleMaterialIcon extends HTMLElement {
       enframe: this.hasAttribute('enframe')
     };
 
-    renderHtml(this, { template, context });
+    this.render(props);
   }
 }
 

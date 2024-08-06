@@ -1,13 +1,12 @@
 import template from './socials-template.js';
-import style from './socials-style.js';
-import { renderHtml } from '../../utils/utils.js';
+import BaseComponent from '../../common/BaseComponent.js';
 
-class SocialMediaLink extends HTMLElement {
+class SocialMediaLink extends BaseComponent {
   static automatedHoverClass = 'automated-hover';
 
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+    super(template);
+    this.$host = this.shadowRoot.host;
   }
 
   get name() {
@@ -19,7 +18,7 @@ class SocialMediaLink extends HTMLElement {
   }
 
   connectedCallback() {
-    const context = {
+    const props = {
       name: this.name.toLocaleLowerCase(),
       displayName: this.name,
       size: this.getAttribute('size'),
@@ -28,8 +27,7 @@ class SocialMediaLink extends HTMLElement {
       href: this.getAttribute('href')
     };
 
-    renderHtml(this, { template, style, context });
-    this.$host = this.shadowRoot.host;
+    this.render(props);
   }
 
   activateHover() {

@@ -1,23 +1,18 @@
 import template from './logo-template.js';
-import style from './logo-style.js';
-import { renderHtml } from '../../utils/utils.js';
+import BaseComponent from '../../common/BaseComponent.js';
 
-class Logo extends HTMLElement {
-  /**
-   *
-   */
+class Logo extends BaseComponent {
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+    super(template);
   }
 
   connectedCallback() {
-    const context = {
+    const props = {
       size: this.dataset.size,
       href: this.dataset.href
     };
 
-    renderHtml(this, { template, style, context });
+    this.render(props);
   }
 }
 
