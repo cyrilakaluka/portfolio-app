@@ -21,27 +21,35 @@ class BaseComponent extends HTMLElement {
    *  @param {Object} props - The props object to be used in the render template
    */
   render(props) {
-    if (!this.$options.noCssReset) {
+    if (!this.$options.noCssReset && this.shadowRoot) {
       this.#ensureCssResetStyleSheetInitialization();
       this.shadowRoot.adoptedStyleSheets = [BaseComponent.cssResetStyleSheet];
     }
 
-    this.shadowRoot.innerHTML = typeof this.$template === 'function' ? this.$template(props) : this.$template;
+
+    const htmlString = typeof this.$template === 'function' ? this.$template(props) : this.$template;
+
+    if (this.$options.noShadow) {
+      this.innerHTML = htmlString;
+      return;
+    }
+
+    this.shadowRoot.innerHTML = htmlString;
   }
 
   #ensureCssResetStyleSheetInitialization() {
-    if (!BaseComponent.cssResetStyleSheet) {
-      const linkElement = document.querySelector('link#css-reset');
-      if (linkElement) {
-        for (const sheet of document.styleSheets) {
-          if (sheet.href === linkElement.href) {
-            const styleSheet = new CSSStyleSheet();
-            const cssText = Array.from(sheet.cssRules).map(rule => rule.cssText).join('');
-            styleSheet.replaceSync(cssText);
-            BaseComponent.cssResetStyleSheet = styleSheet;
-            break;
-          }
-        }
+    if (BaseComponent.cssResetStyleSheet) return;
+
+    const linkElement = document.querySelector('link#css-reset');
+    if (linkElement) {
+      for (const sheet of document.styleSheets) {
+        if (sheet.href !== linkElement.href) continue;
+
+        const styleSheet = new CSSStyleSheet();
+        const cssText = Array.from(sheet.cssRules).map(rule => rule.cssText).join('');
+        styleSheet.replaceSync(cssText);
+        BaseComponent.cssResetStyleSheet = styleSheet;
+        break;
       }
     }
 
