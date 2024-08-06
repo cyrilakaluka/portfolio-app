@@ -1,10 +1,9 @@
 import template from './section-template.js';
-import { renderHtml } from '../../utils/utils.js';
+import BaseComponent from '../../common/BaseComponent.js';
 
-class Section extends HTMLElement {
+class Section extends BaseComponent {
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+    super(template);
   }
 
   connectedCallback() {
@@ -12,7 +11,7 @@ class Section extends HTMLElement {
       title: this.dataset.title
     };
 
-    renderHtml(this, { template, context });
+    this.render(context);
   }
 }
 

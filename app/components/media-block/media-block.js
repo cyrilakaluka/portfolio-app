@@ -1,10 +1,9 @@
-import { renderHtml } from '../../utils/utils.js';
+import BaseComponent from '../../common/BaseComponent.js';
 import template from './media-block-template.js';
 
-class MediaBlock extends HTMLElement {
+class MediaBlock extends BaseComponent {
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+    super(template);
   }
 
   get imageUrl() {
@@ -36,7 +35,7 @@ class MediaBlock extends HTMLElement {
       reverse: this.reverse
     };
 
-    renderHtml(this, { template, context });
+    this.render(context);
   }
 }
 

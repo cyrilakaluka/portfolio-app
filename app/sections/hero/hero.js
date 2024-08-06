@@ -1,15 +1,13 @@
 import template from "./hero-template.js";
-import style from "./hero-style.js";
-import { renderHtml } from "../../utils/utils.js";
+import BaseComponent from "../../common/BaseComponent.js";
 
-class Hero extends HTMLElement {
+class Hero extends BaseComponent {
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+    super(template);
   }
 
   connectedCallback() {
-    renderHtml(this, { template, style });
+    this.render();
     this.$socials = this.shadowRoot.getElementById('socials');
     this.$socials.addEventListener('mouseenter', this.#activateAllSocialLinksHover.bind(this));
     this.$socials.addEventListener('mouseleave', this.#deactivateAllSocialLinksHover.bind(this));

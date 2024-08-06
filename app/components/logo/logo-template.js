@@ -1,3 +1,14 @@
+const css = ({ size }) => /*css*/`
+  :host {
+    width: ${size || 24}px;
+    height: auto;
+  }
+
+  a {
+    color: var(--accent-color);
+  }
+`;
+
 const svg = /*html*/`
   <svg viewBox="0 0 20 21" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <path d="M9 7C9 8.10457 8.10457 9 7 9C5.89543 9 5 8.10457 5 7C5 5.89543 5.89543 5 7 5C8.10457 5 9 5.89543 9 7Z" fill="currentColor"/>
@@ -11,4 +22,7 @@ function wrapInLinkTag(href) {
   return /*html*/ `<a href="${href}">${svg}</a>`;
 }
 
-export default ({ href }) => href && wrapInLinkTag(href) || svg;
+export default ({ href, size }) => /*html*/`
+  <style>${css({ size })}</style>
+  ${href && wrapInLinkTag(href) || svg}
+`;

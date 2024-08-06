@@ -1,7 +1,7 @@
+import template from './skills-template.js';
 import BaseComponent from '../../common/BaseComponent.js';
-import template from './layout-template.js';
 
-class Layout extends BaseComponent {
+class Skills extends BaseComponent {
   constructor() {
     super(template);
   }
@@ -11,4 +11,4 @@ class Layout extends BaseComponent {
   }
 }
 
-customElements.define('app-layout', Layout);
+customElements.define('app-skills', Skills);

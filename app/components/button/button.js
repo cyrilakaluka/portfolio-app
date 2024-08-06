@@ -1,11 +1,9 @@
+import BaseComponent from '../../common/BaseComponent.js';
 import template from './button-template.js';
-import style from './button-style.js';
-import { renderHtml } from '../../utils/utils.js';
 
-class Button extends HTMLElement {
+class Button extends BaseComponent {
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+    super(template);
   }
 
   connectedCallback() {
@@ -13,7 +11,8 @@ class Button extends HTMLElement {
       type: this.getAttribute('type'),
       variant: this.getAttribute('variant')
     };
-    renderHtml(this, { template, style, context });
+
+    this.render(context);
   }
 }
 
