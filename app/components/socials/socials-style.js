@@ -5,7 +5,7 @@ const css = ({ size, expanded, expandOnHover }) => /*css*/`
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    border: 2px solid #3f4551;
+    border: 2px solid var(--dark-grey);
     border-radius: 50px;
     padding: 10px;
     padding-right: ${expanded ? '20px' : '10px'};

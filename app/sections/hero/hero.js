@@ -32,4 +32,4 @@ class Hero extends HTMLElement {
   }
 }
 
-customElements.define('app-landing', Hero);
+customElements.define('app-hero', Hero);

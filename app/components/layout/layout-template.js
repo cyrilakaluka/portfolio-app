@@ -19,6 +19,7 @@ export default /*html*/`
       width: 100%;
       background-color: var(--background-color);
       box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+      z-index: 99999;
     }
 
     slot {

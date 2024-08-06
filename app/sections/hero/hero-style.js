@@ -1,24 +1,22 @@
 const css = /*css*/`
   :host {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
+    display: block;
     height: 100vh;
   }
 
-  :host > * {
-    flex: 1;
+  app-media-block {
+    height: 100%;
   }
 
   /* 
    * content section
   */
-  .content {
+  /* .content {
     display: flex;
     flex-grow: 1.5;
     flex-direction: column;
     justify-content: center;
-  }
+  } */
 
   .greeting {
     font-size: 32px;

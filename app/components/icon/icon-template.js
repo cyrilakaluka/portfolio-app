@@ -9,7 +9,7 @@ const css = ({ size, fill, wght, grad, opsz }) => /*css*/`
   }
   .frame {
     border-radius: 100%;
-    border: 1px solid #3f4551;
+    border: 1px solid var(--dark-grey);
     padding: 10px;
     transition: border-color 250ms ease-in-out;
     display: flex;
