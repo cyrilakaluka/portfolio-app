@@ -8,6 +8,7 @@ const css = ({ title }) => /*css*/`
       position: relative;
       color: var(--accent-color);
       font-size: 24px;
+      font-weight: 500;
       text-transform: uppercase;
       margin-top: 32px;
       padding: 16px 20px;
@@ -52,6 +53,6 @@ const css = ({ title }) => /*css*/`
  */
 export default ({ title }) => /*html*/`
   <style>${css({ title })}</style>
-  <div class="title">${title}</div>
+  <h2 class="title">${title}</h2>
   <slot></slot>
 `;

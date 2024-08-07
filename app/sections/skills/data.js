@@ -1,6 +1,6 @@
 const data = [
   {
-    title: "Front-End",
+    category: "Front-end Development",
     skills: [
       {
         name: "HTML5/CSS3",
@@ -34,8 +34,9 @@ const data = [
         level: '4/5',
         description: "Using Cypress to write and run automated tests for web applications.",
         icon: {
-          type: "image",
-          url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cypressio/cypressio-original.svg"
+          type: "font",
+          class: "devicon-cypressio-plain",
+          color: "#1ca379"
         }
       },
       {
@@ -68,7 +69,7 @@ const data = [
     ]
   },
   {
-    title: "Back-End",
+    category: "Back-end Development",
     skills: [
       {
         name: "C#/.NET",
@@ -131,14 +132,14 @@ const data = [
         description: "Using microservices architecture to build and deploy scalable web applications.",
         icon: {
           type: "text",
-          text: "MSvc",
+          text: "µSvc",
           hexColor: "#A674A1"
         }
       }
     ]
   },
   {
-    title: "DevOps & Cloud Services",
+    category: "DevOps & Cloud Services",
     skills: [
       {
         name: "Docker",
@@ -188,7 +189,7 @@ const data = [
     ]
   },
   {
-    title: "Soft Skills",
+    category: "Soft Skills",
     skills: [
       {
         name: "Problem Solving",

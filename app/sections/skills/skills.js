@@ -1,18 +1,28 @@
 import template from './skills-template.js';
-import data from './data.js';
+import skills from './data.js';
 import BaseComponent from '../../common/BaseComponent.js';
-import './skill-bar/skill-bar.js';
+import SkillCategory from './skill-category/skill-category.js';
 
 class Skills extends BaseComponent {
+  #skillCategories;
+
   constructor() {
     super(template);
+    this.#skillCategories = [];
   }
 
   connectedCallback() {
-    this.render({ data });
-    const skillBar = this.shadowRoot.querySelector('app-skill-bar');
-    console.log(skillBar);
-    skillBar.skill = data[0].skills[3];
+    this.render();
+    this.#addSkillCategories();
+  }
+
+  #addSkillCategories() {
+    const skillCategoriesContainer = this.shadowRoot.querySelector('#skill-categories');
+    skills.forEach(category => {
+      const skillCategory = new SkillCategory(category);
+      skillCategoriesContainer.appendChild(skillCategory);
+      this.#skillCategories.push(skillCategory);
+    });
   }
 }
 

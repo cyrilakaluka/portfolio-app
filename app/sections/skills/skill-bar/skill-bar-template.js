@@ -1,4 +1,6 @@
 const css = ({ levelAsPercentage }) => /*css*/`
+  @import url(https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css);
+
   .container {
     display: flex;
     flex-direction: row;
@@ -7,7 +9,15 @@ const css = ({ levelAsPercentage }) => /*css*/`
   }
 
   .image-frame {
-    width: 64px;
+    width: 48px;
+  }
+
+  .icon, .icon-text {
+    font-size: 48px;
+  }
+
+  .icon-text{
+    line-height: 0;
   }
 
   .skill-detail {
@@ -40,7 +50,10 @@ export default ({ name, levelAsPercentage, description, icon }) => /*html*/`
         <div class="image-frame">
           <img src="${icon.url}" alt="${name}" />
         </div>
-          `: /*html*/`
+        `: icon.type === "font" ? /*html*/`
+        <i class="icon ${icon.class}" style="color: ${icon.color};"></i>
+        `:
+          /*html*/`
         <div class="icon-text">
           ${icon.text}
         </div>

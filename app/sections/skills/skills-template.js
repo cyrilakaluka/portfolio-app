@@ -1,10 +1,14 @@
 const css = /*css*/`
-  
+  #skill-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
 `;
 
-export default () => /*html*/`
+export default /*html*/`
   <style>${css}</style>
   <app-section data-title="My Skills">
-    <app-skill-bar></app-skill-bar>
+    <div id="skill-categories"></div>
   </app-section>
 `;
