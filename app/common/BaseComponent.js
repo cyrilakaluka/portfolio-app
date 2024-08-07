@@ -1,6 +1,9 @@
 class BaseComponent extends HTMLElement {
   static cssResetStyleSheet = null;
 
+  #template;
+  #options;
+
   /**
    * @param {Function|string} template - The template to render.
    * @param {Function|string} style - The style to render.
@@ -10,8 +13,8 @@ class BaseComponent extends HTMLElement {
    */
   constructor(template, options = {}) {
     super();
-    this.$template = template;
-    this.$options = options;
+    this.#template = template;
+    this.#options = options;
 
     if (!options.noShadow)
       this.attachShadow({ mode: 'open' });
@@ -21,15 +24,14 @@ class BaseComponent extends HTMLElement {
    *  @param {Object} props - The props object to be used in the render template
    */
   render(props) {
-    if (!this.$options.noCssReset && this.shadowRoot) {
+    if (!this.#options.noCssReset && this.shadowRoot) {
       this.#ensureCssResetStyleSheetInitialization();
       this.shadowRoot.adoptedStyleSheets = [BaseComponent.cssResetStyleSheet];
     }
 
+    const htmlString = typeof this.#template === 'function' ? this.#template(props) : this.#template;
 
-    const htmlString = typeof this.$template === 'function' ? this.$template(props) : this.$template;
-
-    if (this.$options.noShadow) {
+    if (this.#options.noShadow) {
       this.innerHTML = htmlString;
       return;
     }

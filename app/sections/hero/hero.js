@@ -2,15 +2,17 @@ import template from "./hero-template.js";
 import BaseComponent from "../../common/BaseComponent.js";
 
 class Hero extends BaseComponent {
+  #socials;
+
   constructor() {
     super(template);
   }
 
   connectedCallback() {
     this.render();
-    this.$socials = this.shadowRoot.querySelector('.socials');
-    this.$socials.addEventListener('mouseenter', this.#expandAllSocialLinks.bind(this));
-    this.$socials.addEventListener('mouseleave', this.#restoreAllSocialLinksOriginalState.bind(this));
+    this.#socials = this.shadowRoot.querySelector('.socials');
+    this.#socials.addEventListener('mouseenter', this.#expandAllSocialLinks.bind(this));
+    this.#socials.addEventListener('mouseleave', this.#restoreAllSocialLinksOriginalState.bind(this));
   }
 
   #expandAllSocialLinks() {
@@ -29,7 +31,7 @@ class Hero extends BaseComponent {
   }
 
   #getSocialLinks() {
-    return this.$socials.querySelectorAll('app-social-media');
+    return this.#socials.querySelectorAll('app-social-media');
   }
 }
 

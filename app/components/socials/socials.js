@@ -2,9 +2,11 @@ import template from './socials-template.js';
 import BaseComponent from '../../common/BaseComponent.js';
 
 class SocialMediaLink extends BaseComponent {
+  #host;
+
   constructor() {
     super(template);
-    this.$host = this.shadowRoot.host;
+    this.#host = this.shadowRoot.host;
   }
 
   get name() {
