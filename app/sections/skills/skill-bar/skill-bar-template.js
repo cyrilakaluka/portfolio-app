@@ -1,6 +1,10 @@
 const css = ({ levelAsPercentage }) => /*css*/`
   @import url(https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css);
 
+  :host {
+    --max-icon-width: 48px;
+  }
+
   .container {
     display: flex;
     flex-direction: row;
@@ -8,16 +12,23 @@ const css = ({ levelAsPercentage }) => /*css*/`
     gap: 20px;
   }
 
-  .image-frame {
-    width: 48px;
+  img {
+    width: 100%;
   }
 
-  .icon, .icon-text {
-    font-size: 48px;
+  .image-frame {
+    max-width: var(--max-icon-width);
+  }
+
+  .icon {
+    font-size: var(--max-icon-width);
   }
 
   .icon-text{
     line-height: 0;
+    font-family: var(--icon-text-font-family);
+    font-size: 28px;
+    max-width: var(--max-icon-width);
   }
 
   .skill-detail {
