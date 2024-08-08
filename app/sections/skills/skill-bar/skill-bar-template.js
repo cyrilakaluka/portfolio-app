@@ -2,7 +2,7 @@ const css = ({ levelAsPercentage }) => /*css*/`
   @import url(https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css);
 
   :host {
-    --max-icon-width: 48px;
+    --max-icon-size: var(--row-height);
   }
 
   .container {
@@ -17,18 +17,19 @@ const css = ({ levelAsPercentage }) => /*css*/`
   }
 
   .image-frame {
-    max-width: var(--max-icon-width);
+    max-width: var(--max-icon-size);
   }
 
   .icon {
-    font-size: var(--max-icon-width);
+    font-size: var(--max-icon-size);
   }
 
   .icon-text{
     line-height: 0;
     font-family: var(--icon-text-font-family);
     font-size: 28px;
-    max-width: var(--max-icon-width);
+    max-width: var(--max-icon-size);
+    max-height: var(--max-icon-size);
   }
 
   .skill-detail {
