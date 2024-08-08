@@ -2,7 +2,7 @@ const css = /*css*/`
   #skill-categories {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 80px;
   }
 `;
 

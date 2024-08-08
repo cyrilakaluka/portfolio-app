@@ -4,24 +4,22 @@ const css = /*css*/`
     flex-direction: column;
     gap: 20px;
   }
+
   .category {
     color: var(--accent-color);
     font-size: 20px;
     text-align: center;
+    text-transform: uppercase;
   }
-  .skills {
+
+  .skills-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
-  .skill {
+
+  .toggle-button {
     display: none;
-  }
-  .skill.visible {
-    display: block;
-  }
-  #toggle-button {
-    display: inline-flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -36,13 +34,25 @@ const css = /*css*/`
   }
 
   @media (max-width: 768px) {
-    .skills {
+    .skills-container {
       grid-template-columns: 1fr;
     }
-    .skill {
+
+    .toggle-button {
+      display: inline-flex;
+    }
+
+    .toggle-button .less,
+    .skills-container > :nth-child(n+4) {
+      display: none;
+    }
+
+    :host([expanded]) .toggle-button .less,
+    :host([expanded]) .skills-container > :nth-child(n+4) {
       display: block;
     }
-    .skill.hidden {
+
+    :host([expanded]) .toggle-button .more {
       display: none;
     }
   }
@@ -51,9 +61,8 @@ const css = /*css*/`
 export default ({ category }) => /*html*/`
   <style>${css}</style>
   <h4 class="category">${category}</h4>
-  <div id="skills-list" class="skills">
-  </div>
-  <button id="toggle-button">
+  <div class="skills-container"></div>
+  <button class="toggle-button">
     <app-icon class="more" name="expand_circle_down"></app-icon>
     <app-icon class="less" name="expand_circle_up"></app-icon>
     <span class="more">Show More</span>

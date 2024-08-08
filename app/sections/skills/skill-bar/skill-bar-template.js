@@ -45,7 +45,7 @@ const css = ({ levelAsPercentage }) => /*css*/`
 
 export default ({ name, levelAsPercentage, description, icon }) => /*html*/`
   <style>${css({ levelAsPercentage })}</style>
-  <app-tooltip class="container" data-tooltip="${description}">
+  <div class="container" data-tooltip="${description}">
     ${icon.type === "image" ? /*html*/`
         <div class="image-frame">
           <img src="${icon.url}" alt="${name}" />
@@ -62,5 +62,5 @@ export default ({ name, levelAsPercentage, description, icon }) => /*html*/`
       <span class="skill-name">${name}</span>
       <span class="skill-level">${levelAsPercentage}</span>
     </div>
-  </app-tooltip>
+  </div>
 `;

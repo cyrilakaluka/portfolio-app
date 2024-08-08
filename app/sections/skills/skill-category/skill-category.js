@@ -13,13 +13,25 @@ export default class SkillCategory extends BaseComponent {
     this.#skillBars = [];
   }
 
+  get category() {
+    return this.#props.category;
+  }
+
   connectedCallback() {
     this.render({ category: this.#props.category });
     this.#addSkillBars();
+    this.shadowRoot.querySelector('.toggle-button').addEventListener('click', this.#handleToggle);
   }
 
+  #handleToggle = () => {
+    this.shadowRoot.host.toggleAttribute('expanded');
+
+    const eventDetail = { category: this.#props.category };
+    this.dispatchEvent(new CustomEvent('skill-category-toggle', { detail: eventDetail, bubbles: true, composed: true }));
+  };
+
   #addSkillBars() {
-    const skillsContainer = this.shadowRoot.querySelector('#skills-list');
+    const skillsContainer = this.shadowRoot.querySelector('.skills-container');
     this.#props.skills.forEach(skill => {
       const skillBar = new SkillBar(skill);
       skillsContainer.appendChild(skillBar);

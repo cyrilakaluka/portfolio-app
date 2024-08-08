@@ -1,5 +1,5 @@
 import template from './skills-template.js';
-import skills from './data.js';
+import skillCategories from './data.js';
 import BaseComponent from '../../common/BaseComponent.js';
 import SkillCategory from './skill-category/skill-category.js';
 
@@ -14,11 +14,21 @@ class Skills extends BaseComponent {
   connectedCallback() {
     this.render();
     this.#addSkillCategories();
+    this.addEventListener('skill-category-toggle', this.#handleSkillCategoryToggle);
   }
+
+  #handleSkillCategoryToggle = (event) => {
+    this.#skillCategories.forEach(x => {
+      if (x.category !== event.detail.category) {
+        x.removeAttribute('expanded');
+      }
+    });
+  };
 
   #addSkillCategories() {
     const skillCategoriesContainer = this.shadowRoot.querySelector('#skill-categories');
-    skills.forEach(category => {
+
+    skillCategories.forEach(category => {
       const skillCategory = new SkillCategory(category);
       skillCategoriesContainer.appendChild(skillCategory);
       this.#skillCategories.push(skillCategory);
