@@ -54,7 +54,7 @@ const data = [
         description: "Using Tailwind CSS to create responsive and visually appealing web designs.",
         icon: {
           type: "image",
-          url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original-wordmark.svg"
+          url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
         }
       },
       {
@@ -86,7 +86,7 @@ const data = [
         description: "Developing robust back-end applications and RESTful APIs with Node.js and Express.",
         icon: {
           type: "image",
-          url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg"
+          url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
         }
       },
       {
@@ -183,7 +183,7 @@ const data = [
         description: "Using blob storage services to store and manage unstructured data.",
         icon: {
           type: "image",
-          url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+          url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
         }
       }
     ]
