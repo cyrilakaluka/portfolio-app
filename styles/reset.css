@@ -71,3 +71,15 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+/*
+  10.Configure font size defaults
+*/
+html {
+  font-size: 10px;
+}
+
+body,
+:host {
+  font-size: 1.6rem;
+}
