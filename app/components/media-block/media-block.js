@@ -1,4 +1,4 @@
-import BaseComponent from '../../common/BaseComponent.js';
+import BaseComponent from '../../common/base-component.js';
 import template from './media-block-template.js';
 
 class MediaBlock extends BaseComponent {

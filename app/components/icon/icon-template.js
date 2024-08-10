@@ -1,30 +1,32 @@
-const css = ({ size, fill, wght, grad, opsz }) => /*css*/`
-  @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
-  .material-symbols-outlined {
+const css = ({ fill, wght, grad, opsz, style }) => /*css*/`
+  @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+${style.charAt(0).toUpperCase() + style.slice(1)}:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+  
+  .material-symbols-${style} {
     font-variation-settings: 'FILL' ${fill || 0}, 'wght' ${wght || 400}, 'GRAD' ${grad || 0}, 'opsz' ${opsz || 24};
-    width: ${size || 24}px;
-    height: ${size || 24}px;
+    font-size: 1em;
     cursor: default;
     color: var(--icon-color);
   }
-  .frame {
-    border-radius: 100%;
-    border: 1px solid var(--dark-grey);
-    padding: 10px;
-    transition: border-color 250ms ease-in-out;
-    display: flex;
+
+  :host {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  .frame:hover {
+  :host([enframe]) {
+    border-radius: 100%;
+    border: 0.1rem solid var(--dark-grey);
+    transition: all 250ms ease-in-out;
+    padding: 0.6em;
+  }
+
+  :host([enframe]:hover) {
     border-color: var(--accent-color);
   }
 `;
 
-export default ({ name, size, fill, wght, grad, opsz, enframe }) => /*html*/`
-  <style>${css({ size, fill, wght, grad, opsz })}</style>
-  ${enframe && `<div class="frame">` || ''}
-    <span class="material-symbols-outlined">${name}</span>
-  ${enframe && `</div>` || ''}
+export default (props) => /*html*/`
+  <style>${css(props)}</style>
+  <span class="material-symbols-${props.style}">${props.name}</span>
 `;

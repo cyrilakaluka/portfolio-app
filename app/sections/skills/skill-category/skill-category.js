@@ -1,4 +1,4 @@
-import BaseComponent from '../../../common/BaseComponent.js';
+import BaseComponent from '../../../common/base-component.js';
 import template from './skill-category-template.js';
 import SkillBar from '../skill-bar/skill-bar.js';
 

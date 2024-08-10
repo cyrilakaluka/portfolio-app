@@ -1,6 +1,6 @@
 import template from './skills-template.js';
 import skillCategories from './data.js';
-import BaseComponent from '../../common/BaseComponent.js';
+import BaseComponent from '../../common/base-component.js';
 import SkillCategory from './skill-category/skill-category.js';
 
 class Skills extends BaseComponent {

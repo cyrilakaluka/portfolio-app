@@ -17,7 +17,7 @@ class App extends HTMLElement {
         <app-hero id="home" slot="hero"></app-hero>
         <app-about-me id="about"></app-about-me>
         <app-skills id="skills"></app-skills>
-        <app-resume id="resume"></app-resume>
+        <!-- <app-resume id="resume"></app-resume> -->
         <app-contact id="contact"></app-contact>
       </app-layout>
     `;

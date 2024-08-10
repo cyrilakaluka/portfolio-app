@@ -1,5 +1,5 @@
 import template from './skill-bar-template.js';
-import BaseComponent from '../../../common/BaseComponent.js';
+import BaseComponent from '../../../common/base-component.js';
 
 export default class SkillBar extends BaseComponent {
   #props;

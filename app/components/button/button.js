@@ -1,4 +1,4 @@
-import BaseComponent from '../../common/BaseComponent.js';
+import BaseComponent from '../../common/base-component.js';
 import template from './button-template.js';
 
 class Button extends BaseComponent {

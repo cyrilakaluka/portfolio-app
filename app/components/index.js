@@ -6,3 +6,4 @@ import "./layout/layout.js";
 import "./section/section.js";
 import "./media-block/media-block.js";
 import "./tooltip/tooltip.js";
+import './input/input.js';

@@ -1,7 +1,7 @@
+import template from './contact-template.js';
 import BaseComponent from '../../common/base-component.js';
-import template from './layout-template.js';
 
-class Layout extends BaseComponent {
+class Contact extends BaseComponent {
   constructor() {
     super(template);
   }
@@ -11,4 +11,4 @@ class Layout extends BaseComponent {
   }
 }
 
-customElements.define('app-layout', Layout);
+customElements.define('app-contact', Contact);

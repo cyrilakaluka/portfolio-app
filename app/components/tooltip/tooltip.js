@@ -1,5 +1,5 @@
 import template from './tooltip-template.js';
-import BaseComponent from '../../common/BaseComponent.js';
+import BaseComponent from '../../common/base-component.js';
 
 class Tooltip extends BaseComponent {
   constructor() {

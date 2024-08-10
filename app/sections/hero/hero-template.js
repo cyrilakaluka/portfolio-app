@@ -94,6 +94,10 @@ const css = /*css*/`
   .frame > img {
     object-fit: cover;
   }
+
+  app-social-media {
+    font-size: 2.4rem;
+  }
 `;
 
 export default  /*html*/`
@@ -113,10 +117,10 @@ export default  /*html*/`
       <app-button variant="outline">Download Resume</app-button>
     </div>
     <div class="socials">
-      <app-social-media size="24" name="LinkedIn" state="expanded"></app-social-media>
-      <app-social-media size="24" name="Facebook" state="expand-on-hover"></app-social-media>
-      <app-social-media size="24" name="Twitter" state="expand-on-hover"></app-social-media>
-      <app-social-media size="24" name="WhatsApp" state="expand-on-hover"></app-social-media>
+      <app-social-media name="LinkedIn" state="expanded"></app-social-media>
+      <app-social-media name="Facebook" state="expand-on-hover"></app-social-media>
+      <app-social-media name="Twitter" state="expand-on-hover"></app-social-media>
+      <app-social-media name="WhatsApp" state="expand-on-hover"></app-social-media>
     </div>
   </app-media-block>
 `;

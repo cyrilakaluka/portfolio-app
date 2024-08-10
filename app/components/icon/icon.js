@@ -1,4 +1,4 @@
-import BaseComponent from "../../common/BaseComponent.js";
+import BaseComponent from "../../common/base-component.js";
 import template from "./icon-template.js";
 
 class GoogleMaterialIcon extends BaseComponent {
@@ -9,7 +9,7 @@ class GoogleMaterialIcon extends BaseComponent {
   connectedCallback() {
     const props = {
       name: this.getAttribute('name'),
-      size: this.getAttribute('size'),
+      style: this.getAttribute('icon-style')?.toLocaleLowerCase() || "outlined",
       fill: this.getAttribute('fill'),
       wght: this.getAttribute('wght'),
       grad: this.getAttribute('grad'),

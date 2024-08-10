@@ -37,6 +37,7 @@ const css = /*css*/`
 
   .phone {
     display: flex;
+    align-items: center;
   }
 
   .phone-number {
@@ -61,7 +62,7 @@ export default () => /*html*/`
     </ul>
     <span>|</span>
     <div class="phone">
-      <app-icon name="call" fill="1"></app-icon>
+      <app-icon class="icon" name="call" fill="1" style="font-size: 2.4rem"></app-icon>
       <span class="phone-number">+372 5324 5984</span>
     </div>
   </nav>

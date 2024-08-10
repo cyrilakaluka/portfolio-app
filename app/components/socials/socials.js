@@ -1,12 +1,16 @@
 import template from './socials-template.js';
-import BaseComponent from '../../common/BaseComponent.js';
+import BaseComponent from '../../common/base-component.js';
 
 class SocialMediaLink extends BaseComponent {
-  #host;
+  static socialLinks = {
+    'LinkedIn': 'https://www.linkedin.com/in/cyrilakaluka/',
+    'Facebook': 'https://www.facebook.com/cyrilakaluka/',
+    'Twitter': 'https://twitter.com/cyrilakaluka',
+    'WhatsApp': 'https://wa.me/2349037482415'
+  };
 
   constructor() {
     super(template);
-    this.#host = this.shadowRoot.host;
   }
 
   get name() {
@@ -16,9 +20,9 @@ class SocialMediaLink extends BaseComponent {
   connectedCallback() {
     const props = {
       name: this.name.toLocaleLowerCase(),
-      displayName: this.name,
       size: this.getAttribute('size'),
-      href: this.getAttribute('href')
+      displayName: this.name,
+      href: SocialMediaLink.socialLinks[this.name]
     };
 
     this.render(props);

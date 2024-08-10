@@ -1,5 +1,5 @@
 import template from "./hero-template.js";
-import BaseComponent from "../../common/BaseComponent.js";
+import BaseComponent from "../../common/base-component.js";
 
 class Hero extends BaseComponent {
   #socials;

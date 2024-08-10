@@ -1,5 +1,5 @@
 import template from './logo-template.js';
-import BaseComponent from '../../common/BaseComponent.js';
+import BaseComponent from '../../common/base-component.js';
 
 class Logo extends BaseComponent {
   constructor() {
