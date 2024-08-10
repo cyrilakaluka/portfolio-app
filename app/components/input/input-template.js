@@ -33,13 +33,15 @@ const css = /*css*/`
   }
 `;
 
+const error = /*html*/`<div id="error"></div>`;
+
 const input = ({ type, ...rest }) => {
   const inputMode = type === 'number' ? 'numeric' : type === 'email' ? 'email' : 'text';
   const propsAsString = getPropsAsString(rest) + ` inputmode="${inputMode}"`;
 
   return /*html*/`
     <input id="input" type="text" ${propsAsString}/>
-    ${error()}
+    ${error}
   `;
 };
 
@@ -47,13 +49,9 @@ const textarea = ({ value, ...rest }) => {
   const propsAsString = getPropsAsString(rest);
   return /*html*/`
     <textarea id="input" ${propsAsString} style="resize: none;">${value}</textarea>
-    ${error()}
+    ${error}
   `;
 };
-
-const error = () => /*html*/`
-  <div id="error"></div>
-`;
 
 function getPropsAsString(props) {
   return Object.keys(props).map(key => {

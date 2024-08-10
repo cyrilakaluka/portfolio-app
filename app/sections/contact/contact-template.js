@@ -7,7 +7,7 @@ export default () => /*html*/`
       <div class="contact-form">
         <h2 class="title">Let's Connect</h2>
         <app-input type="text" name="name" placeholder="Name" required></app-input>
-        <app-input type="text" name="email" placeholder="Email" required></app-input>
+        <app-input type="email" name="email" placeholder="Email" required></app-input>
         <app-input type="text" name="subject" placeholder="Subject" required></app-input>
         <app-input type="textarea" name="message" placeholder="Message" required rows="5"></app-input>
         <app-button type="submit">Submit</app-button>

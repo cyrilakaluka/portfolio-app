@@ -10,9 +10,11 @@ class Input extends BaseComponent {
   #inputElement;
   #errorElement;
   #isValid;
+  #inputErrors;
 
   constructor() {
     super(template);
+    this.#inputErrors = {};
   }
 
   get type() {
@@ -84,6 +86,9 @@ class Input extends BaseComponent {
     if (this.type === 'email')
       this.#validateEmailInput();
 
+    if (this.required)
+      this.#validateRequired();
+
     this.dispatchEvent(new CustomEvent('custom-input', {
       detail: {
         name: this.name,
@@ -118,17 +123,30 @@ class Input extends BaseComponent {
 
   #validateEmailInput = () => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    this.#updateInputError(!emailPattern.test(this.value), Input.errorMessages.email);
+
+    if (this.value && !emailPattern.test(this.value))
+      this.#inputErrors.email = Input.errorMessages.email;
+    else
+      delete this.#inputErrors.email;
+
+    this.#updateInputError();
   };
 
   #validateRequired = () => {
-    const isEmpty = !this.value;
-    this.#updateInputError(this.required && isEmpty, Input.errorMessages.required);
+    if (!this.value && this.required)
+      this.#inputErrors.required = Input.errorMessages.required;
+    else
+      delete this.#inputErrors.required;
+
+    this.#updateInputError();
   };
 
-  #updateInputError = (enabled, message) => {
+  #updateInputError = () => {
+    const enabled = Object.keys(this.#inputErrors).length > 0;
+    const message = this.#inputErrors[Object.keys(this.#inputErrors)[0]];
+
     this.#inputElement.classList.toggle('error', enabled);
-    this.#errorElement.textContent = enabled && message || '';
+    this.#errorElement.textContent = message;
 
     this.#isValid = !enabled;
   };
