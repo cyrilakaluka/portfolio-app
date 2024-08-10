@@ -9,24 +9,23 @@ const css = /*css*/`
   .content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-bottom: 40px;
+    gap: 2rem;
+    margin-bottom: 4rem;
   }
 
   .introduction {
-    font-size: 2rem;
+    font-size: 3.2rem;
     font-weight: bold;
   }
 
   .job-role {
-    font-size: 1.5rem;
+    font-size: 2.4rem;
     font-weight: bold;
     color: var(--accent-color);
   }
 
   .summary {
-    font-size: 1.1rem;
-    line-height: 1.5;
+    font-size: 1.8rem;
     opacity: 0.7;
     text-align: justify;
   }
