@@ -18,6 +18,18 @@ class Button extends BaseComponent {
     };
 
     this.render(props);
+
+    const buttonElement = this.rootElement.querySelector('.button');
+    buttonElement.addEventListener('click', (event) => {
+      this.dispatchEvent(new CustomEvent('app-button-click', {
+        detail: {
+          id: this.getAttribute('id'),
+          event
+        },
+        bubbles: true,
+        composed: true
+      }));
+    });
   }
 }
 

@@ -120,7 +120,7 @@ class FormInput extends BaseComponent {
 
   #handleInputEvent = () => {
     this.validate();
-    this.dispatchEvent(new CustomEvent('custom-input', {
+    this.dispatchEvent(new CustomEvent('app-form-input', {
       detail: {
         name: this.name,
         value: this.value,

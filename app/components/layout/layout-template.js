@@ -3,40 +3,8 @@ const css = /*css*/`
     margin: auto;
     position: relative;
     display: block;
-    width: 100%;
-  }
-
-  slot {
-    width: inherit;
-    max-width: inherit;
-  }
-  :host {
-    margin: auto;
-    position: relative;
-    display: block;
-    width: 100%;
-  }
-
-  slot {
-    width: inherit;
-    max-width: inherit;
-  }
-  :host {
-    margin: auto;
-    position: relative;
-    display: block;
-    width: 100%;
-  }
-
-  slot {
-    width: inherit;
-    max-width: inherit;
-  }
-  :host {
-    margin: auto;
-    position: relative;
-    display: block;
-    width: 100%;
+    width: 100vw;
+    max-width: 100%;
   }
 
   slot {

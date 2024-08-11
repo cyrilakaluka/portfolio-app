@@ -1,9 +1,10 @@
 import template from './contact-template.js';
 import BaseComponent from '../../common/base-component.js';
+import Dialog from '../../components/dialog/dialog.js';
 
 class Contact extends BaseComponent {
   #secureToken = "50f65a20-60d3-48f2-8089-d13d0e9535a0";
-  #myContact = {
+  #contact = {
     email: "akalukacyril@gmail.com",
     phone: "+1 (343) 882 9369",
     address: {
@@ -15,17 +16,19 @@ class Contact extends BaseComponent {
     }
   };
   #formElement;
-  #inputElements;
+  #formInputElements;
+  #dialog;
 
   constructor() {
     super(template);
-    this.#inputElements = [];
+    this.#formInputElements = [];
+    this.#dialog = new Dialog();
   }
 
   connectedCallback() {
-    this.render({ contact: this.#myContact });
+    this.render({ contact: this.#contact });
 
-    this.#inputElements = Array.from(this.shadowRoot.querySelectorAll('app-form-input'));
+    this.#formInputElements = Array.from(this.shadowRoot.querySelectorAll('app-form-input'));
     this.#formElement = this.shadowRoot.querySelector('#contact-form');
     this.#formElement.addEventListener('submit', this.#handleFormSubmit);
   }
@@ -46,7 +49,7 @@ class Contact extends BaseComponent {
     };
 
     const sendParams = {
-      to: this.#myContact.email,
+      to: this.#contact.email,
       from: data.email,
       subject: data.subject,
       body: this.#generateFormattedBody(data)
@@ -55,19 +58,38 @@ class Contact extends BaseComponent {
     const message = await this.#send(sendParams);
 
     if (message === "OK") {
-      alert("Message sent successfully!");
-      this.#formElement.reset();
+      this.#showSuccessDialog();
     } else {
-      alert(message);
-    }
+      this.#showErrorDialog(message);
+    };
+  };
+
+  #showSuccessDialog = () => {
+    const dialogParams = {
+      title: "Success",
+      content: "Your message has been sent successfully.",
+      type: "success"
+    };
+
+    this.#dialog.show(dialogParams, () => this.#formElement.reset());
+  };
+
+  #showErrorDialog = (message) => {
+    const dialogParams = {
+      title: "Error",
+      content: message,
+      type: "error"
+    };
+
+    this.#dialog.show(dialogParams);
   };
 
   #isValidFormInputs = () => {
-    for (const input of this.#inputElements) {
+    for (const input of this.#formInputElements) {
       input.validate();
     }
 
-    return this.#inputElements.every(input => input.isValid);
+    return this.#formInputElements.every(input => input.isValid);
   };
 
   #generateFormattedBody({ name, email, subject, message }) {

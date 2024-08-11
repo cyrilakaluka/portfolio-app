@@ -17,6 +17,14 @@ class BaseComponent extends HTMLElement {
     this.#options = options;
   }
 
+  get rootElement() {
+    return this.shadowRoot || this;
+  }
+
+  get options() {
+    return this.#options;
+  }
+
   set options(value) {
     this.#options = { ...this.#options, ...value };
     this.#attachShadowIfEnabled();
