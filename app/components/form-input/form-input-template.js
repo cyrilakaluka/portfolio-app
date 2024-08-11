@@ -1,6 +1,5 @@
 const css = /*css*/`
   :host {
-    --input-background-color: #101624;
     --input-border-color: #232935;
   }
 
@@ -10,7 +9,7 @@ const css = /*css*/`
     border-radius: 0.7rem;
     width: 100%;
     outline: none;
-    background-color: var(--input-background-color);
+    background-color: var(--alt-background-color);
     color: var(--font-color);
     transition: all 0.4s ease;
   }
