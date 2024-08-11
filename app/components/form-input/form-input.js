@@ -76,8 +76,8 @@ class FormInput extends BaseComponent {
     }
 
     if (this.required) {
-      this.#inputElement.addEventListener('focusout', this.#handleFocusoutEvent);
       this.#validators.push(this.#validateRequiredInput);
+      this.#inputElement.addEventListener('focusout', this.#validateRequiredInput);
     }
   }
 
@@ -85,8 +85,6 @@ class FormInput extends BaseComponent {
     this.#validators.forEach((validator) => {
       validator();
     });
-
-    this.#updateErrorElement();
   }
 
   #getProps() {
@@ -139,8 +137,6 @@ class FormInput extends BaseComponent {
       this.#ensureNumericInput();
   };
 
-  #handleFocusoutEvent = () => this.validate();
-
   #validateEmailInput = () => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -148,6 +144,8 @@ class FormInput extends BaseComponent {
       this.#errors.email = FormInput.errorMessages.email;
     else
       delete this.#errors.email;
+
+    this.#updateErrorElement();
   };
 
   #validateRequiredInput = () => {
@@ -155,10 +153,12 @@ class FormInput extends BaseComponent {
       this.#errors.required = FormInput.errorMessages.required(this.displayName);
     else
       delete this.#errors.required;
+
+    this.#updateErrorElement();
   };
 
   #updateErrorElement = () => {
-    const message = this.#errors[Object.keys(this.#errors)[0]];
+    const message = !this.isValid ? this.#errors[Object.keys(this.#errors)[0]] : '';
 
     this.#inputElement.classList.toggle('error', !this.isValid);
     this.#errorElement.textContent = message;
