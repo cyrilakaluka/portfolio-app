@@ -7,9 +7,14 @@ class Button extends BaseComponent {
   }
 
   connectedCallback() {
+    const noShadow = this.hasAttribute('no-shadow');
+    this.options = { noShadow };
+
     const props = {
       type: this.getAttribute('type'),
-      variant: this.getAttribute('variant')
+      variant: this.getAttribute('variant'),
+      noShadow,
+      textContent: this.textContent
     };
 
     this.render(props);

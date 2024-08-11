@@ -1,10 +1,10 @@
 const css = /*css*/`
   .button {
-    padding: 15px 20px;
-    border-radius: 50px;
-    font-size: 18px;
+    padding: 1.2rem 2rem;
+    border-radius: 5rem;
+    font-size: 1.8rem;
     font-family: var(--font-family);
-    min-width: 170px;
+    min-width: 17rem;
     transition: transform 0.25s;
     cursor: pointer;
   }
@@ -24,13 +24,13 @@ const css = /*css*/`
 
   .button.outline {
     border: none;
-    outline: 1px solid var(--accent-color);
+    outline: 0.1rem solid var(--accent-color);
     color: var(--font-color);
     background: transparent;
   }
 
   .button.outline:hover {
-    outline-width: 2px;
+    outline-width: 0.2rem;
   }
 
   .button:active {
@@ -42,9 +42,9 @@ const css = /*css*/`
   }
 `;
 
-export default ({ type, variant }) => /*html*/`
+export default ({ type, variant, noShadow, textContent }) => /*html*/`
   <style>${css}</style>
   <button class="button ${variant || 'default'}" type="${type || 'button'}">
-    <slot></slot>
+    ${noShadow ? textContent : '<slot></slot>'}
   </button>
 `;

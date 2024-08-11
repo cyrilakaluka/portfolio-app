@@ -5,7 +5,7 @@ const css = /*css*/`
     gap: 4rem;
   }
 
-  .contact-form {
+  #contact-form {
     flex: 1.3;
     display: flex;
     flex-direction: column;

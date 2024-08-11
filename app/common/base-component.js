@@ -15,19 +15,19 @@ class BaseComponent extends HTMLElement {
     super();
     this.#template = template;
     this.#options = options;
+  }
 
-    if (!options.noShadow)
-      this.attachShadow({ mode: 'open' });
+  set options(value) {
+    this.#options = { ...this.#options, ...value };
+    this.#attachShadowIfEnabled();
   }
 
   /**
    *  @param {Object} props - The props object to be used in the render template
    */
   render(props) {
-    if (!this.#options.noCssReset && this.shadowRoot) {
-      this.#ensureCssResetStyleSheetInitialization();
-      this.shadowRoot.adoptedStyleSheets = [BaseComponent.cssResetStyleSheet];
-    }
+    this.#attachShadowIfEnabled();
+    this.#addCssResetStyleSheetsIfEnabled();
 
     const htmlString = typeof this.#template === 'function' ? this.#template(props) : this.#template;
 
@@ -37,6 +37,19 @@ class BaseComponent extends HTMLElement {
     }
 
     this.shadowRoot.innerHTML = htmlString;
+  }
+
+  #attachShadowIfEnabled() {
+    if (!this.#options.noShadow && !this.shadowRoot) {
+      this.attachShadow({ mode: 'open' });
+    }
+  }
+
+  #addCssResetStyleSheetsIfEnabled() {
+    if (!this.#options.noCssReset && this.shadowRoot) {
+      this.#ensureCssResetStyleSheetInitialization();
+      this.shadowRoot.adoptedStyleSheets = [BaseComponent.cssResetStyleSheet];
+    }
   }
 
   #ensureCssResetStyleSheetInitialization() {
