@@ -77,7 +77,6 @@ class FormInput extends BaseComponent {
 
     if (this.required) {
       this.#validators.push(this.#validateRequiredInput);
-      this.#inputElement.addEventListener('focusout', this.#validateRequiredInput);
     }
   }
 
