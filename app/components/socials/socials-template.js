@@ -45,6 +45,7 @@ const css = /*css*/`
     align-items: center;
     justify-content: center;
     font-size: 1em;
+    width: 1em;
     color: var(--icon-color);
     display: flex;
     align-items: center;
