@@ -1,5 +1,6 @@
 import './sections/index.js';
 import './components/index.js';
+import { html } from './common/utils.js';
 
 class App extends HTMLElement {
   constructor() {
@@ -11,7 +12,7 @@ class App extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = /*html*/`
+    this.innerHTML = html`
       <app-layout>
         <app-navbar slot="header"></app-navbar>
         <app-hero id="home" slot="hero"></app-hero>

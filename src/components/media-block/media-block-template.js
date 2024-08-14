@@ -1,3 +1,5 @@
+import { html, css } from "../../common/utils.js";
+
 /**
  * Generates the css styling for the component
  * @param {Object} props - The template props.
@@ -5,7 +7,7 @@
  * @param {boolean} props.reverse - Indicates whether to reverse the order of the media block.
  * @return {string} returns the generated css style as string.
  */
-const css = ({ contentSizeRatio, reverse }) => /*css*/`
+const styles = ({ contentSizeRatio, reverse }) => css`
   :host {
     display: flex;
     flex-direction: ${reverse ? 'row-reverse' : 'row'};
@@ -61,8 +63,8 @@ const css = ({ contentSizeRatio, reverse }) => /*css*/`
   }
 `;
 
-export default ({ blockTitle, imageUrl, imageFrame, contentSizeRatio, reverse }) => /*html*/`
-  <style>${css({ contentSizeRatio, reverse })}</style>
+export default ({ blockTitle, imageUrl, imageFrame, contentSizeRatio, reverse }) => html`
+  <style>${styles({ contentSizeRatio, reverse })}</style>
   <slot class="content"></slot>
   <div class="image">
     <div class="frame ${imageFrame || 'rounded'}">

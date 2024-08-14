@@ -1,4 +1,6 @@
-const css = /*css*/`
+import { css } from "../../common/utils.js";
+
+const styles = css`
   .container {
     display: flex;
     flex-direction: row;
@@ -77,9 +79,15 @@ const css = /*css*/`
     gap: 1.5rem;
   }
 
+  .socials {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
   app-social-media {
     font-size: 2.4rem;
   }
 `;
 
-export default css;
+export default styles;

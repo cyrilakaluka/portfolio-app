@@ -1,4 +1,6 @@
-const css = /*css*/`
+import { html, css } from "../../common/utils.js";
+
+const styles = css`
   :host {
     display: flex;
     flex-direction: column;
@@ -100,8 +102,8 @@ const css = /*css*/`
   }
 `;
 
-export default  /*html*/`
-  <style>${css}</style>
+export default html`
+  <style>${styles}</style>
   <div class="nav-offset"></div>
   <app-media-block class="content" block-title="Hero" image-url="./assets/hero.jpg" image-frame="rounded" content-size-ratio="1.5">
     <div class="text">

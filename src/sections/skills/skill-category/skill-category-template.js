@@ -1,4 +1,6 @@
-const css = /*css*/`
+import { html, css } from "../../../common/utils.js";
+
+const styles = css`
   :host {
     display: flex;
     flex-direction: column;
@@ -69,8 +71,8 @@ const css = /*css*/`
   }
 `;
 
-export default ({ category }) => /*html*/`
-  <style>${css}</style>
+export default ({ category }) => html`
+  <style>${styles}</style>
   <h4 class="category">${category}</h4>
   <div class="skills-container"></div>
   <button class="toggle-button">

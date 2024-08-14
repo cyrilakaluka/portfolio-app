@@ -6,7 +6,6 @@ class BaseComponent extends HTMLElement {
 
   /**
    * @param {Function|string} template - The template to render.
-   * @param {Function|string} style - The style to render.
    * @param {Object} options - The options for rendering the HTML.
    * @param {boolean} options.noCssReset - Whether to skip the CSS reset.
    * @param {boolean} options.noShadow - Whether to skip creating a shadow root.
@@ -18,16 +17,11 @@ class BaseComponent extends HTMLElement {
   }
 
   get rootElement() {
-    return this.shadowRoot || this;
+    return this.useShadow ? this.shadowRoot : this;
   }
 
-  get options() {
-    return this.#options;
-  }
-
-  set options(value) {
-    this.#options = { ...this.#options, ...value };
-    this.#attachShadowIfEnabled();
+  get useShadow() {
+    return !this.#options.noShadow && !this.hasAttribute('no-shadow');
   }
 
   /**
@@ -39,16 +33,16 @@ class BaseComponent extends HTMLElement {
 
     const htmlString = typeof this.#template === 'function' ? this.#template(props) : this.#template;
 
-    if (this.#options.noShadow) {
-      this.innerHTML = htmlString;
+    if (this.useShadow) {
+      this.shadowRoot.innerHTML = htmlString;
       return;
     }
 
-    this.shadowRoot.innerHTML = htmlString;
+    this.innerHTML = htmlString;
   }
 
   #attachShadowIfEnabled() {
-    if (!this.#options.noShadow && !this.shadowRoot) {
+    if (this.useShadow && !this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
     }
   }

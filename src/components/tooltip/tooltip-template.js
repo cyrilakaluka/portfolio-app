@@ -1,4 +1,6 @@
-const css = /*css*/`
+import { html, css } from "../../common/utils.js";
+
+const styles = css`
   :host {
     display: inline-block;
     position: relative;
@@ -23,7 +25,7 @@ const css = /*css*/`
   }
 `;
 
-export default /*html*/`
-  <style>${css}</style>
+export default html`
+  <style>${styles}</style>
   <slot></slot>
 `;

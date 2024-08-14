@@ -1,4 +1,6 @@
-const css = ({ levelAsPercentage }) => /*css*/`
+import { html, css } from "../../../common/utils.js";
+
+const styles = ({ levelAsPercentage }) => css`
   @import url(https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css);
 
   :host {
@@ -55,17 +57,17 @@ const css = ({ levelAsPercentage }) => /*css*/`
 
 `;
 
-export default ({ name, levelAsPercentage, description, icon }) => /*html*/`
-  <style>${css({ levelAsPercentage })}</style>
+export default ({ name, levelAsPercentage, description, icon }) => html`
+  <style>${styles({ levelAsPercentage })}</style>
   <div class="container" data-tooltip="${description}">
-    ${icon.type === "image" ? /*html*/`
+    ${icon.type === "image" ? html`
         <div class="image-frame">
           <img src="${icon.url}" alt="${name}" />
         </div>
-        `: icon.type === "font" ? /*html*/`
+        `: icon.type === "font" ? html`
         <i class="icon ${icon.class}" style="color: ${icon.color};"></i>
         `:
-          /*html*/`
+    html`
         <div class="icon-text">
           ${icon.text}
         </div>

@@ -1,4 +1,6 @@
-const css = /*css*/`
+import { html, css } from "../../common/utils.js";
+
+const styles = css`
   @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css);
 
   .link {
@@ -70,8 +72,8 @@ const css = /*css*/`
  * @param {string} props.href - The link to the social media.
  */
 export default ({ name, displayName, href }) => {
-  return /*html*/`
-    <style>${css}</style>
+  return html`
+    <style>${styles}</style>
     <a class="link" href="${href || ''}" target="_blank">
       <i class="icon fa-brands fa-${name}"></i>
       <span class="display-name">${displayName}</span>

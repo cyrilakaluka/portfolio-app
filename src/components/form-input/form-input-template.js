@@ -1,4 +1,6 @@
-const css = /*css*/`
+import { html, css } from "../../common/utils.js";
+
+const styles = css`
   :host {
     --input-border-color: #232935;
   }
@@ -32,13 +34,13 @@ const css = /*css*/`
   }
 `;
 
-const error = /*html*/`<div id="error"></div>`;
+const error = html`<div id="error"></div>`;
 
 const input = ({ type, ...rest }) => {
   const inputMode = type === 'number' ? 'numeric' : type === 'email' ? 'email' : 'text';
   const propsAsString = getPropsAsString(rest) + ` inputmode="${inputMode}"`;
 
-  return /*html*/`
+  return html`
     <input id="input" type="text" ${propsAsString}/>
     ${error}
   `;
@@ -46,7 +48,7 @@ const input = ({ type, ...rest }) => {
 
 const textarea = ({ value, ...rest }) => {
   const propsAsString = getPropsAsString(rest);
-  return /*html*/`
+  return html`
     <textarea id="input" ${propsAsString} style="resize: none;">${value}</textarea>
     ${error}
   `;
@@ -61,7 +63,7 @@ function getPropsAsString(props) {
   }).join(' ');
 }
 
-export default (props) => /*html*/`
-    <style>${css}</style>
+export default (props) => html`
+    <style>${styles}</style>
     ${props.type === "textarea" ? textarea(props) : input(props)}
 `;

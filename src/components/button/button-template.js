@@ -1,4 +1,6 @@
-const css = /*css*/`
+import { html, css } from "../../common/utils.js";
+
+const styles = css`
   .button {
     padding: 1.2rem 2rem;
     border-radius: 5rem;
@@ -42,8 +44,8 @@ const css = /*css*/`
   }
 `;
 
-export default ({ type, variant, noShadow, textContent }) => /*html*/`
-  <style>${css}</style>
+export default ({ type, variant, noShadow, textContent }) => html`
+  <style>${styles}</style>
   <button class="button ${variant || 'default'}" type="${type || 'button'}">
     ${noShadow ? textContent : '<slot></slot>'}
   </button>

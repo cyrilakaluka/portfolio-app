@@ -1,11 +1,12 @@
-import css from './contact-style.js';
+import { html } from '../../common/utils.js';
+import styles from './contact-styles.js';
 
 export default ({ contact }) => {
   const { email, phone, address } = contact;
   const { street, city, province, postalCode, country } = address;
 
-  return /*html*/`
-    <style>${css}</style>
+  return html`
+    <style>${styles}</style>
     <app-section data-title="Contact">
       <div class="container">
         <form id="contact-form" action="#">

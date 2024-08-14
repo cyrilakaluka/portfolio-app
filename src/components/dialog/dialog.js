@@ -2,7 +2,6 @@ import BaseComponent from '../../common/base-component.js';
 import template from './dialog-template.js';
 
 export default class Dialog extends BaseComponent {
-  static buttonIdCounter = 0;
 
   #callback;
   #bodyStyleOverflow;
@@ -17,8 +16,7 @@ export default class Dialog extends BaseComponent {
     const props = {
       title: this.dataset.title,
       content: this.dataset.content,
-      type: this.dataset.type,
-      buttonId: `app-dialog-ok-button-${Dialog.buttonIdCounter++}`
+      type: this.dataset.type
     };
 
     this.render(props);

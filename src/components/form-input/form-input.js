@@ -18,14 +18,6 @@ class FormInput extends BaseComponent {
     this.#validators = [];
   }
 
-  get noShadow() {
-    return this.hasAttribute('no-shadow');
-  }
-
-  get rootElement() {
-    return this.noShadow ? this : this.shadowRoot;
-  }
-
   get type() {
     return this.getAttribute('type');
   }
@@ -55,15 +47,16 @@ class FormInput extends BaseComponent {
   }
 
   connectedCallback() {
-    this.options = {
-      noShadow: this.noShadow
-    };
-
     this.render(this.#getProps());
 
     // Initialize input and error elements
     this.#inputElement = this.rootElement.querySelector('#input');
     this.#errorElement = this.rootElement.querySelector('#error');
+
+    // Set content of textarea
+    if (this.type === 'textarea') {
+      this.#setTextareaContent();
+    }
 
     // Add event listeners
     this.#inputElement.addEventListener('input', this.#handleInputEvent);
@@ -87,19 +80,10 @@ class FormInput extends BaseComponent {
   }
 
   #getProps() {
-    let value = '';
-    if (this.type === 'textarea') {
-      value = this.rootElement.innerHTML;
-      this.rootElement.innerHTML = '';
-    }
-    else {
-      value = this.getAttribute('value');
-    }
-
     const props = {
       type: this.type,
       name: this.name,
-      value: value,
+      value: this.getAttribute('value'),
       required: this.required,
     };
 
@@ -116,6 +100,11 @@ class FormInput extends BaseComponent {
       acc[attr.name] = attr.value;
       return acc;
     }, {});
+  }
+
+  #setTextareaContent() {
+    this.#inputElement.textContent = this.rootElement.innerHTML;
+    this.rootElement.innerHTML = '';
   }
 
   #handleInputEvent = () => {

@@ -1,4 +1,6 @@
-const css = ({ title }) => /*css*/`
+import { html, css } from "../../common/utils.js";
+
+const styles = ({ title }) => css`
   :host {
       display: block;
       width: 100%;
@@ -51,8 +53,8 @@ const css = ({ title }) => /*css*/`
  * @param {Object} props - The template props object.
  * @param {string} props.title - The title of the section.
  */
-export default ({ title }) => /*html*/`
-  <style>${css({ title })}</style>
+export default ({ title }) => html`
+  <style>${styles({ title })}</style>
   <h2 class="title">${title}</h2>
   <slot></slot>
 `;

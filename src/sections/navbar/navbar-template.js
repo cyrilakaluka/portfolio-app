@@ -1,4 +1,6 @@
-const css = /*css*/`
+import { html, css } from "../../common/utils.js";
+
+const styles = css`
   :host {
     display: flex;
     align-items: center;
@@ -50,8 +52,8 @@ const css = /*css*/`
   }
 `;
 
-export default () => /*html*/`
-  <style>${css}</style>
+export default () => html`
+  <style>${styles}</style>
   <app-logo class="logo" data-href="#home"></app-logo>
   <nav class="nav-items">
     <ul class="nav-links">

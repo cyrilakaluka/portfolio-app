@@ -1,9 +1,10 @@
 import template from './contact-template.js';
 import BaseComponent from '../../common/base-component.js';
 import Dialog from '../../components/dialog/dialog.js';
+import { html } from '../../common/utils.js';
 
 class Contact extends BaseComponent {
-  #secureToken = "50f65a20-60d3-48f2-8089-d13d0e9535a0";
+  #publicAccessKey = "086e1a0e-e4ea-45c5-b678-2a3ef2d23c9c";
   #contact = {
     email: "akalukacyril@gmail.com",
     phone: "+1 (343) 882 9369",
@@ -49,10 +50,9 @@ class Contact extends BaseComponent {
     };
 
     const sendParams = {
-      to: this.#contact.email,
-      from: data.email,
-      subject: data.subject,
-      body: this.#generateFormattedBody(data)
+      email: this.#contact.email,
+      name: data.name,
+      message: this.#generateFormattedBody(data)
     };
 
     const message = await this.#send(sendParams);
@@ -93,7 +93,7 @@ class Contact extends BaseComponent {
   };
 
   #generateFormattedBody({ name, email, subject, message }) {
-    return /*html*/`
+    return html`
       <p>Subject: ${subject} - Form Submission from ${name} (${email})</p>
       <p>Dear Cyril,</p>
       <p>You have received a new message from your website's contact form. Here are the details:</p>
@@ -108,16 +108,31 @@ class Contact extends BaseComponent {
     `;
   }
 
-  async #send({ to, from, subject, body }) {
-    const params = {
-      SecureToken: this.#secureToken,
-      To: to,
-      From: from,
-      Subject: subject,
-      Body: body
+  async #send({ name, email, message }) {
+    const url = 'https://api.web3forms.com/submit';
+    const body = {
+      access_key: this.#publicAccessKey,
+      name,
+      email,
+      message
     };
 
-    return await Email.send(params);
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return data.message || 'Something went wrong. Please try again later.';
+    }
+
+    return "OK";
   }
 }
 

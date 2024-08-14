@@ -1,4 +1,6 @@
-const css = ({ type }) => /*css*/`
+import { html, css } from "../../common/utils.js";
+
+const styles = ({ type }) => css`
   :host {
     position: fixed;
     inset: 0;
@@ -26,8 +28,8 @@ const css = ({ type }) => /*css*/`
   }
 
   .icon {
-    --icon-color: ${type === "success" ? "var(--success-color)" : "var(--error-color)"};
     font-size: 12.8rem;
+    --icon-color: ${type === 'success' ? 'var(--success-color)' : 'var(--error-color)'};
   }
 
   .title {
@@ -73,8 +75,8 @@ const css = ({ type }) => /*css*/`
   }
 `;
 
-export default ({ type, title, content, buttonId }) => /*html*/`
-  <style>${css({ type })}</style>
+export default ({ type, title, content }) => html`
+  <style>${styles({ type })}</style>
   <div id="dialog" class="container">
     <app-icon class="icon" name="${type === "success" ? "check_circle" : "error"}"></app-icon>
     <h2 class="title">${title}</h2>

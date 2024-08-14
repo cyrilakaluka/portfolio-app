@@ -1,6 +1,8 @@
+import { html, css } from "../../common/utils.js";
+
 const imageSrc = "https://images.unsplash.com/photo-1654618977232-a6c6dea9d1e8?q=80&w=2572&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-const css = /*css*/`
+const styles = css`
   :host {
     display: block;
     width: 100%;
@@ -31,8 +33,8 @@ const css = /*css*/`
   }
 `;
 
-export default /*html*/`
-  <style>${css}</style>
+export default html`
+  <style>${styles}</style>
   <app-section data-title="About Me">
     <app-media-block block-title="About" image-url="${imageSrc}" image-frame="rect" reverse content-size-ratio="1.2">
       <div class="content">
