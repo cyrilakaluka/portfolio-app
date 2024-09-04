@@ -31,14 +31,7 @@ class BaseComponent extends HTMLElement {
     this.#attachShadowIfEnabled();
     this.#addCssResetStyleSheetsIfEnabled();
 
-    const htmlString = typeof this.#template === 'function' ? this.#template(props) : this.#template;
-
-    if (this.useShadow) {
-      this.shadowRoot.innerHTML = htmlString;
-      return;
-    }
-
-    this.innerHTML = htmlString;
+    this.rootElement.innerHTML = typeof this.#template === 'function' ? this.#template(props) : this.#template;
   }
 
   #attachShadowIfEnabled() {

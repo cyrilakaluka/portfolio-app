@@ -126,13 +126,12 @@ class Contact extends BaseComponent {
       body: JSON.stringify(body)
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      return data.message || 'Something went wrong. Please try again later.';
+    if (response.ok) {
+      return "OK";
     }
 
-    return "OK";
+    const data = await response.json();
+    return data.message || 'Something went wrong. Please try again later.';
   }
 }
 
