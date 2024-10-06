@@ -105,7 +105,7 @@ const styles = css`
 export default html`
   <style>${styles}</style>
   <div class="nav-offset"></div>
-  <app-media-block class="content" block-title="Hero" image-url="./assets/hero.jpg" image-frame="rounded" content-size-ratio="1.5">
+  <app-media-block class="content" block-title="Hero" image-url="./assets/profile_img.jpg" image-frame="rounded" content-size-ratio="1.5">
     <div class="text">
       <h3 class="greeting">Hey there!, I'm</h3>
       <h1 class="name">Cyril Akaluka</h1>
