@@ -13,7 +13,7 @@ export default {
     minifyHTML(),
     copy({
       targets: [
-        { src: 'public/*', dest: 'dist' }
+        { src: 'public/*', dest: DIST_DIR },
       ]
     }),
     serve({
@@ -24,6 +24,7 @@ export default {
     livereload({
       watch: DIST_DIR,
       port: 3000,
+      delay: 500
     })
   ]
 };

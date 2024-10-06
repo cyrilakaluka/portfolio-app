@@ -103,8 +103,7 @@ class FormInput extends BaseComponent {
   }
 
   #setTextareaContent() {
-    this.#inputElement.textContent = this.rootElement.innerHTML;
-    this.rootElement.innerHTML = '';
+    this.#inputElement.textContent = this.getAttribute('value');
   }
 
   #handleInputEvent = () => {
