@@ -1,7 +1,8 @@
 import { html, css } from "../../common/utils.js";
 
-const styles = ({ fill, wght, grad, opsz }) => {
+const styles = ({ fill, wght, grad, opsz, color }) => {
   const fontVariationSettings = `'FILL' ${fill || 0}, 'wght' ${wght || 400}, 'GRAD' ${grad || 0}, 'opsz' ${opsz || 24}`;
+  const iconColor = color || 'var(--icon-color)';
 
   return css`
     @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
@@ -14,7 +15,7 @@ const styles = ({ fill, wght, grad, opsz }) => {
       font-variation-settings: ${fontVariationSettings};
       font-size: 1em;
       cursor: default;
-      color: var(--icon-color);
+      color: ${iconColor};
     }
 
     :host {

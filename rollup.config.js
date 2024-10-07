@@ -24,7 +24,7 @@ export default {
     livereload({
       watch: DIST_DIR,
       port: 3000,
-      delay: 500
+      delay: 1000
     })
   ]
 };

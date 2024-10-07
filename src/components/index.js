@@ -7,3 +7,4 @@ import "./section/section.js";
 import "./media-block/media-block.js";
 import "./tooltip/tooltip.js";
 import './form-input/form-input.js';
+import './timeline/timeline.js';

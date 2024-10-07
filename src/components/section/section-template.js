@@ -1,7 +1,7 @@
 import { html, css } from "../../common/utils.js";
 
 const styles = ({ title }) => css`
-  :host {
+    :host {
       display: block;
       width: 100%;
     }
