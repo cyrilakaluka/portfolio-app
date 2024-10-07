@@ -15,9 +15,9 @@ const styles = css`
   }
 
   .container {
-    max-width: 1200px;
-    padding-left: 20px;
-    padding-right: 20px;
+    max-width: 120rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     margin: auto;
   }
 
@@ -29,10 +29,18 @@ const styles = css`
     z-index: 99999;
   }
 
+  .footer {
+    position: relative;
+    width: 100%;
+    background-color: var(--alt-background-color);
+    z-index: 99999;
+    margin-top: 20rem;
+  }
+
   .sections {
     display: flex;
     flex-direction: column;
-    gap: 200px;
+    gap: 20rem;
   }
 `;
 
@@ -47,4 +55,9 @@ export default html`
     <slot name="hero"></slot>
     <slot class="sections"></slot>
   </main>
+  <footer class="footer">
+    <div class="container">
+      <slot name="footer"></slot>
+    </div>
+  </footer>
 `;

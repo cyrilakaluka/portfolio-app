@@ -20,6 +20,7 @@ class App extends HTMLElement {
         <app-skills id="skills"></app-skills>
         <app-resume id="resume"></app-resume>
         <app-contact id="contact"></app-contact>
+        <app-footer slot="footer"></app-footer>
       </app-layout>
     `;
   }
