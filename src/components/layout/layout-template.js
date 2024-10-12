@@ -41,6 +41,12 @@ const styles = css`
     flex-direction: column;
     gap: 20rem;
   }
+
+  @media (max-width: 640px){
+    .container {
+      padding: 1.5rem;
+    }
+  }
 `;
 
 export default html`

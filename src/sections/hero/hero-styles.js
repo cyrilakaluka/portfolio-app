@@ -56,7 +56,7 @@ export default css`
   .summary {
     font-size: 2rem;
     opacity: 0.7;
-    text-align: justify;
+    /* text-align: justify; */
     margin-bottom: 4rem;
   }
 
@@ -64,6 +64,7 @@ export default css`
     display: flex;
     gap: 1.5rem;
     margin-bottom: 4rem;
+    width: max-content;
   }
 
   .socials {
@@ -157,10 +158,6 @@ export default css`
   }
 
   @media (max-width: 460px) {
-    .buttons {
-      flex-direction: column;
-    }
-
     .socials {
       width: 100%;
     }

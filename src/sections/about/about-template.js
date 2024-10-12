@@ -8,7 +8,22 @@ const styles = css`
     width: 100%;
   }
 
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .media {
+    flex: 1;
+    font-size: 1.2rem;
+  }
+
   .content {
+    flex: 1.2;
+  }
+
+  .text {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -27,30 +42,46 @@ const styles = css`
   }
 
   .summary {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     opacity: 0.7;
-    text-align: justify;
+  }
+
+  app-button {
+    width: max-content;
+  }
+
+  @media (max-width: 1024px){
+    .container {
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .media {
+      width: clamp(35rem, 60vw, 60rem);
+    }
   }
 `;
 
 export default html`
   <style>${styles}</style>
-  <app-section data-title="About Me">
-    <app-media-block 
-      block-title="About" 
-      image-url="${imageSrc}" 
-      image-frame="rect"
-      content-size-ratio="1.2"
-      media-query="max-width: 900px"
-      media-query-behavior="stack">
+  <app-section class="section" data-title="About Me">
+    <div class="container">
+      <app-media-frame 
+        class="media"
+        image-url="${imageSrc}" 
+        image-frame="rect"
+        image-alt="about me">
+      </app-media-frame>
       <div class="content">
-        <div class="introduction">Hi There! I'm Cyril Akaluka</div>
-        <div class="job-role">Full-Stack Developer</div>
-        <div class="summary">
-          I am a results-driven full-stack developer with over nine years of experience in designing and implementing robust software solutions. My expertise spans a wide range of programming languages and technologies, including both front-end and back-end development as well as cloud technologies. Throughout my career, I have consistently delivered high-quality, scalable, and maintainable code, making significant contributions to the success of the projects I have been involved in.
+        <div class="text">
+          <div class="introduction">Hi There! I'm Cyril Akaluka</div>
+          <div class="job-role">Full-Stack Developer</div>
+          <div class="summary">
+            I am a results-driven full-stack developer with over nine years of experience in designing and implementing robust software solutions. My expertise spans a wide range of programming languages and technologies, including both front-end and back-end development as well as cloud technologies. Throughout my career, I have consistently delivered high-quality, scalable, and maintainable code, making significant contributions to the success of the projects I have been involved in.
+          </div>
         </div>
+        <app-button variant="outline">Download Resume</app-button>
       </div>
-      <app-button variant="outline">Download Resume</app-button>
-    </app-media-block>
+    </div>
   </app-section>
 `;
