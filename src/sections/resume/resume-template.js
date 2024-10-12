@@ -4,7 +4,14 @@ const styles = css`
     .timelines {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 4rem;
+        gap: 2rem;
+    }
+    
+    @media (max-width: 960px){
+        .timelines {
+            grid-template-columns: 1fr;
+            gap: 8rem;     
+        }
     }
 `;
 
