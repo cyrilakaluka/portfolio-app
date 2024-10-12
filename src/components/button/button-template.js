@@ -1,14 +1,19 @@
 import { html, css } from "../../common/utils.js";
 
 const styles = css`
+  :host {
+    display: block;
+    min-width: 17rem;
+  }
+
   .button {
     padding: 1.2rem 2rem;
     border-radius: 5rem;
     font-size: 1.8rem;
     font-family: var(--font-family);
-    min-width: 17rem;
     transition: transform 0.25s;
     cursor: pointer;
+    width: 100%;
   }
 
   .button.solid,

@@ -36,7 +36,13 @@ const styles = css`
 export default html`
   <style>${styles}</style>
   <app-section data-title="About Me">
-    <app-media-block block-title="About" image-url="${imageSrc}" image-frame="rect" reverse content-size-ratio="1.2">
+    <app-media-block 
+      block-title="About" 
+      image-url="${imageSrc}" 
+      image-frame="rect"
+      content-size-ratio="1.2"
+      media-query="max-width: 900px"
+      media-query-behavior="stack">
       <div class="content">
         <div class="introduction">Hi There! I'm Cyril Akaluka</div>
         <div class="job-role">Full-Stack Developer</div>

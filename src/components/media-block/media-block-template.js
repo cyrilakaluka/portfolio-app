@@ -5,9 +5,11 @@ import { html, css } from "../../common/utils.js";
  * @param {Object} props - The template props.
  * @param {string} props.contentSizeRatio - The size ratio of the content part of the media block.
  * @param {boolean} props.reverse - Indicates whether to reverse the order of the media block.
+ * @param {string} props.mediaQuery - The media query for the media block.
+ * @param {string} props.mediaQueryBehavior - The behavior of the media query.
  * @return {string} returns the generated css style as string.
  */
-const styles = ({ contentSizeRatio, reverse }) => css`
+const styles = ({ contentSizeRatio, reverse, mediaQuery, mediaQueryBehavior }) => css`
   :host {
     display: flex;
     flex-direction: ${reverse ? 'row-reverse' : 'row'};
@@ -25,50 +27,54 @@ const styles = ({ contentSizeRatio, reverse }) => css`
     justify-content: center;
   }
 
-  .image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .media {
+    font-size: 1rem;
   }
 
-  .frame {
-    position: relative;
-    display: flex;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border: 10px solid var(--accent-color);
-    overflow: hidden;
-  }
-
-  .frame::before {
-    position: absolute;
-    content: '';
-    background-color: transparent;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border: 5px solid var(--background-color);
-  }
-
-  .frame > img {
-    object-fit: cover;
-    width: 100%;
-  }
-
-  .frame.rounded {
-    border-radius: 100%;
-  }
-
-  .frame.rounded::before {
-    border-radius: 100%;
-  }
+  /* Media queries */
+  ${generateMediaQueryCss(mediaQuery, mediaQueryBehavior)}
 `;
 
-export default ({ blockTitle, imageUrl, imageFrame, contentSizeRatio, reverse }) => html`
-  <style>${styles({ contentSizeRatio, reverse })}</style>
+const generateMediaQueryCss = (mediaQuery, mediaQueryBehavior) => {
+  if (!mediaQuery) return css``;
+
+  const mediaQueryBehaviorCss = () => {
+    switch (mediaQueryBehavior) {
+      case 'stack':
+        return css`
+         :host {
+            flex-direction: column;
+          }
+  
+          .media {
+            width: 40%;
+            min-width: 30rem;
+          }
+        `;
+      case 'hide':
+        return css`
+          .media {
+            display: none;
+          }
+        `;
+      default: throw new Error("Unsupported mediaQueryBehavior");
+    }
+  };
+
+  return css`
+    @media (${mediaQuery}) {
+      ${mediaQueryBehaviorCss()}
+    }
+  `;
+};
+
+export default ({ blockTitle, imageUrl, imageFrame, ...rest }) => html`
+  <style>${styles(rest)}</style>
+  <app-media-frame 
+    class="media" 
+    image-alt="${blockTitle}" 
+    image-frame="${imageFrame}" 
+    image-url="${imageUrl}">
+  </app-media-frame>
   <slot class="content"></slot>
-  <div class="image">
-    <div class="frame ${imageFrame || 'rounded'}">
-      <img src="${imageUrl}" alt="${blockTitle}">
-    </div>
-  </div>
 `;

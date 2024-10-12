@@ -87,19 +87,8 @@ class FormInput extends BaseComponent {
       required: this.required,
     };
 
-    const combinedProps = { ...this.#getOtherAttributeValues(), ...props };
+    const combinedProps = { ...this.attributesAsObject(['name', 'type', 'value', 'required']), ...props };
     return combinedProps;
-  }
-
-  #getOtherAttributeValues() {
-    const excludedAttributes = ['name', 'type', 'value', 'required'];
-    const otherAttributes = Array.from(this.attributes).filter(attr => attr.value && !excludedAttributes.includes(attr.name));
-
-    // return as an object with properties name and value
-    return otherAttributes.reduce((acc, attr) => {
-      acc[attr.name] = attr.value;
-      return acc;
-    }, {});
   }
 
   #setTextareaContent() {

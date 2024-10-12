@@ -16,8 +16,7 @@ const styles = css`
 
   .container {
     max-width: 120rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 0 3.6rem;
     margin: auto;
   }
 

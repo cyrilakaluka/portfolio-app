@@ -31,7 +31,17 @@ class BaseComponent extends HTMLElement {
     this.#attachShadowIfEnabled();
     this.#addCssResetStyleSheetsIfEnabled();
 
-    this.rootElement.innerHTML = typeof this.#template === 'function' ? this.#template(props) : this.#template;
+    this.rootElement.innerHTML = typeof this.#template === 'function' ? this.#template(props || this.attributesAsObject()) : this.#template;
+  }
+
+  attributesAsObject(excludedAttributes = []) {
+    console.log(Array.from(this.attributes));
+    const obj = Array.from(this.attributes).filter(attr => !excludedAttributes.includes(attr.name));
+
+    return obj.reduce((acc, attr) => {
+      acc[this.#toCamelCase(attr.name)] = attr.value === "" ? true : attr.value;
+      return acc;
+    }, {});
   }
 
   #attachShadowIfEnabled() {
@@ -66,6 +76,10 @@ class BaseComponent extends HTMLElement {
     if (!BaseComponent.cssResetStyleSheet) {
       console.error('No CSS reset stylesheet found');
     }
+  }
+
+  #toCamelCase(str) {
+    return str.replace(/-./g, x => x[1].toUpperCase());
   }
 }
 
