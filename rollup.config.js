@@ -5,10 +5,11 @@ import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 
 const DIST_DIR = 'dist';
+const SERVER_PORT = 3000;
 
 export default {
   input: 'src/app.js',
-  output: { file: "dist/index.js", plugins: [terser()] },
+  output: { file: `${DIST_DIR}/index.js`, plugins: [terser()] },
   plugins: [
     minifyHTML(),
     copy({
@@ -17,13 +18,13 @@ export default {
       ]
     }),
     serve({
-      port: 3000,
+      port: SERVER_PORT,
       open: true,
       contentBase: DIST_DIR,
     }),
     livereload({
       watch: DIST_DIR,
-      port: 3000,
+      port: SERVER_PORT,
       delay: 1000
     })
   ]
