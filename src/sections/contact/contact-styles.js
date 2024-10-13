@@ -1,6 +1,6 @@
 import { css } from "../../common/utils.js";
 
-const styles = css`
+export default css`
   .container {
     display: flex;
     flex-direction: row;
@@ -88,6 +88,15 @@ const styles = css`
   app-social-media {
     font-size: 2.4rem;
   }
-`;
 
-export default styles;
+  #contact-form app-button {
+    width: max-content;
+  }
+
+  @media (max-width: 960px){
+    .container {
+      flex-direction: column;
+      gap: 8rem;
+    }
+  }
+`;

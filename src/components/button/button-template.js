@@ -3,7 +3,6 @@ import { html, css } from "../../common/utils.js";
 const styles = css`
   :host {
     display: block;
-    min-width: 17rem;
   }
 
   .button {
@@ -13,7 +12,7 @@ const styles = css`
     font-family: var(--font-family);
     transition: transform 0.25s;
     cursor: pointer;
-    width: 100%;
+    min-width: 17rem;
   }
 
   .button.solid,

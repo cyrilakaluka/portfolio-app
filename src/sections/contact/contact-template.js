@@ -43,7 +43,7 @@ export default ({ contact }) => {
             </div>
           </div>
           <div class="socials-connect">
-            <div>Connect with me via a social handle of your choice</div>
+            <div>Visit my social profile and let's get connected</div>
             <div class="socials">
               <app-social-media name="LinkedIn" state="expand-on-hover"></app-social-media>
               <app-social-media name="Facebook" state="expand-on-hover"></app-social-media>

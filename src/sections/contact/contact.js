@@ -42,32 +42,28 @@ class Contact extends BaseComponent {
     }
 
     const formData = new FormData(this.#formElement);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
+
+    const sendParams = {
       subject: formData.get('subject'),
+      email: formData.get('email'),
+      name: formData.get('name'),
+      fromName: "Portfolio Contact Form",
       message: formData.get('message')
     };
 
-    const sendParams = {
-      email: this.#contact.email,
-      name: data.name,
-      message: this.#generateFormattedBody(data)
-    };
+    const response = await this.#send(sendParams);
 
-    const message = await this.#send(sendParams);
-
-    if (message === "OK") {
+    if (response === "OK") {
       this.#showSuccessDialog();
     } else {
-      this.#showErrorDialog(message);
+      this.#showErrorDialog(response);
     };
   };
 
   #showSuccessDialog = () => {
     const dialogParams = {
       title: "Success",
-      content: "Your message has been sent successfully.",
+      content: "Message sent",
       type: "success"
     };
 
@@ -92,26 +88,12 @@ class Contact extends BaseComponent {
     return this.#formInputElements.every(input => input.isValid);
   };
 
-  #generateFormattedBody({ name, email, subject, message }) {
-    return html`
-      <p>Subject: ${subject} - Form Submission from ${name} (${email})</p>
-      <p>Dear Cyril,</p>
-      <p>You have received a new message from your website's contact form. Here are the details:</p>
-      <p>
-        <b>Name:</b> ${name}<br/>
-        <b>Email:</b> ${email}<br/>
-        <b>Subject:</b> ${subject}<br/>
-        <b>Message:</b><br/>
-        ${message}
-      </p>
-      <p>Best regards,<br/>Your Website Contact Form</p>
-    `;
-  }
-
-  async #send({ name, email, message }) {
+  async #send({ subject, name, fromName, email, message }) {
     const url = 'https://api.web3forms.com/submit';
     const body = {
       access_key: this.#publicAccessKey,
+      subject,
+      from_name: fromName,
       name,
       email,
       message
