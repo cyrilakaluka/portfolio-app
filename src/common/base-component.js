@@ -35,7 +35,6 @@ class BaseComponent extends HTMLElement {
   }
 
   attributesAsObject(excludedAttributes = []) {
-    console.log(Array.from(this.attributes));
     const obj = Array.from(this.attributes).filter(attr => !excludedAttributes.includes(attr.name));
 
     return obj.reduce((acc, attr) => {

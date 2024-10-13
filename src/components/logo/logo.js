@@ -7,11 +7,7 @@ class Logo extends BaseComponent {
   }
 
   connectedCallback() {
-    const props = {
-      href: this.dataset.href
-    };
-
-    this.render(props);
+    this.render();
   }
 }
 
