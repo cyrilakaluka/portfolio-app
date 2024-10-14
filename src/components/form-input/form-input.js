@@ -61,8 +61,9 @@ class FormInput extends BaseComponent {
     // Add event listeners
     this.#inputElement.addEventListener('input', this.#handleInputEvent);
 
-    if (this.type === 'number')
+    if (this.type === 'number') {
       this.#inputElement.addEventListener('beforeinput', this.#handleBeforeInputEvent);
+    }
 
     if (this.type === 'email') {
       this.#validators.push(this.#validateEmailInput);

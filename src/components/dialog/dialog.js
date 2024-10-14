@@ -8,8 +8,6 @@ export default class Dialog extends BaseComponent {
 
   constructor() {
     super(template);
-
-    this.#callback = null;
   }
 
   connectedCallback() {
@@ -22,13 +20,12 @@ export default class Dialog extends BaseComponent {
     this.render(props);
 
     const buttonElement = this.rootElement.querySelector('#button');
-    const dialog = this.rootElement.querySelector('#dialog');
-
     buttonElement.addEventListener('click', event => {
       event.stopImmediatePropagation();
       this.dismiss();
     });
 
+    const dialog = this.rootElement.querySelector('#dialog');
     dialog.addEventListener('click', event => {
       event.stopImmediatePropagation();
     });
@@ -52,17 +49,24 @@ export default class Dialog extends BaseComponent {
     this.dataset.type = type;
 
     this.#callback = callback;
-    this.#bodyStyleOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    this.#disableScrolling();
+
     document.body.appendChild(this);
   }
 
   dismiss() {
     this.remove();
+    this.#enableScrolling();
+    this.#callback && this.#callback();
+  }
+
+  #enableScrolling() {
     document.body.style.overflow = this.#bodyStyleOverflow;
-    if (this.#callback) {
-      this.#callback();
-    }
+  }
+
+  #disableScrolling() {
+    this.#bodyStyleOverflow = document.body.style.overflow; // Save current body overflow style to restore later
+    document.body.style.overflow = 'hidden';
   }
 }
 
