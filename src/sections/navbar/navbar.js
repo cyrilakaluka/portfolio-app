@@ -10,14 +10,20 @@ class NavBar extends BaseComponent {
   connectedCallback() {
     this.render();
     this.#addNavLinksClickEventListeners();
+    this.#addMenuToggleEventListeners();
   }
 
   #addNavLinksClickEventListeners() {
     const navElements = Array.from(this.rootElement.querySelectorAll('a'));
     navElements.forEach(el => {
-      el.addEventListener('click', this.#dispatchAppNavbarNavigateEvent);
+      el.addEventListener('click', this.#handleNavLinksClick);
     });
   }
+
+  #handleNavLinksClick = (event) => {
+    this.#dispatchAppNavbarNavigateEvent(event);
+    this.#deactivateMenu();
+  };
 
   #dispatchAppNavbarNavigateEvent = (event) => {
     event.preventDefault();
@@ -34,6 +40,20 @@ class NavBar extends BaseComponent {
       detail: { href }
     }));
   };
+
+  #deactivateMenu() {
+    const menu = this.rootElement.querySelector('.menu');
+    menu.classList.remove('active');
+  }
+
+  #addMenuToggleEventListeners() {
+    const menuToggle = this.rootElement.querySelector('.menu-toggle');
+
+    menuToggle.addEventListener('click', () => {
+      const menu = this.rootElement.querySelector('.menu');
+      menu.classList.toggle('active');
+    });
+  }
 }
 
 customElements.define('app-navbar', NavBar);

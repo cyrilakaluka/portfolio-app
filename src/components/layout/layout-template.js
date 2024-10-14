@@ -44,7 +44,7 @@ const styles = css`
 
   @media (max-width: 640px){
     .container {
-      padding: 1.5rem;
+      padding: 0 1.5rem;
     }
   }
 `;
