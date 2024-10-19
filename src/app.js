@@ -9,11 +9,7 @@ class App extends HTMLElement {
 
   connectedCallback() {
     this.#render();
-    this.#addAppNavbarNavigateEventListener();
-  }
-
-  disconnectedCallback() {
-    document.removeEventListener('app-navbar-navigate', this.#addAppNavbarNavigateEventListener);
+    this.#addScrollToSectionEventListener();
   }
 
   #render() {
@@ -30,22 +26,20 @@ class App extends HTMLElement {
     `;
   }
 
-  #addAppNavbarNavigateEventListener() {
-    document.addEventListener('app-navbar-navigate', event => {
-      const { href } = event.detail;
+  #addScrollToSectionEventListener() {
+    document.addEventListener('app-scroll-to-section', event => {
+      const { sectionId } = event.detail;
 
-      if (href.startsWith('#')) {
-        const navbar = this.querySelector('#navbar');
-        const navbarHeight = navbar.offsetHeight;
+      const section = this.querySelector(`#${sectionId}`);
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
 
-        const section = this.querySelector(href);
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      const navbar = this.querySelector('#navbar');
+      const navbarHeight = navbar.offsetHeight;
 
-        window.scrollTo({
-          top: sectionTop - navbarHeight,
-          behavior: 'smooth'
-        });
-      }
+      window.scrollTo({
+        top: sectionTop - navbarHeight,
+        behavior: 'smooth'
+      });
     });
   }
 }

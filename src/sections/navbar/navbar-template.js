@@ -35,7 +35,7 @@ const styles = css`
     color: var(--accent-color);
   }
 
-  .nav-link a {
+  app-link {
     text-decoration: none;
     color: inherit;
     text-transform: uppercase;
@@ -162,16 +162,16 @@ const styles = css`
 
 export default () => html`
   <style>${styles}</style>
-  <a href="#home">
+  <app-link href="#home">
     <app-logo class="logo"></app-logo>
-  </a>
+  </app-link>
   <div class="menu">
     <nav class="nav-items">
       <ul class="nav-links">
-        <li class="nav-link"><a href="#home">Home</a></li>
-        <li class="nav-link"><a href="#about">About</a></li>
-        <li class="nav-link"><a href="#resume">Resume</a></li>
-        <li class="nav-link"><a href="#contact">Contact</a></li>
+        <li class="nav-link"><app-link href="#home">Home</app-link></li>
+        <li class="nav-link"><app-link href="#about">About</app-link></li>
+        <li class="nav-link"><app-link href="#resume">Resume</app-link></li>
+        <li class="nav-link"><app-link href="#contact">Contact</app-link></li>
       </ul>
       <span class="separator">|</span>
       <div class="phone">

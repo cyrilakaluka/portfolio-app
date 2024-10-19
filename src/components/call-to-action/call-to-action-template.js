@@ -62,9 +62,9 @@ function renderButton({ type, variant, noShadow, textContent }) {
 
 function renderLink({ href, variant, noShadow, textContent }) {
   return html`
-    <a class="cta ${variant || 'default'}" href="${href}">
+    <app-link class="cta ${variant || 'default'}" href="${href}">
       ${noShadow ? textContent : '<slot></slot>'}
-    </a>
+    </app-link>
   `;
 }
 

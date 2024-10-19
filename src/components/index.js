@@ -8,3 +8,4 @@ import "./media-frame/media-frame.js";
 import "./tooltip/tooltip.js";
 import './form-input/form-input.js';
 import './timeline/timeline.js';
+import './link/link.js';

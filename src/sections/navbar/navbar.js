@@ -1,7 +1,6 @@
 import template from './navbar-template.js';
 import BaseComponent from '../../common/base-component.js';
 
-
 class NavBar extends BaseComponent {
   constructor() {
     super(template);
@@ -16,37 +15,16 @@ class NavBar extends BaseComponent {
   }
 
   #addNavLinksClickEventListeners() {
-    const navElements = Array.from(this.rootElement.querySelectorAll('a'));
+    const navElements = Array.from(this.rootElement.querySelectorAll('app-link'));
     navElements.forEach(el => {
-      el.addEventListener('click', this.#handleNavLinksClick);
+      el.addEventListener('click', this.#deactivateMenu);
     });
   }
 
-  #handleNavLinksClick = (event) => {
-    this.#dispatchAppNavbarNavigateEvent(event);
-    this.#deactivateMenu();
-  };
-
-  #dispatchAppNavbarNavigateEvent = (event) => {
-    event.preventDefault();
-
-    const href = event.target.getAttribute('href') || event.currentTarget.getAttribute('href');
-    if (!href) {
-      console.warn('href is not defined on any target element');
-      return;
-    }
-
-    this.dispatchEvent(new CustomEvent('app-navbar-navigate', {
-      bubbles: true,
-      composed: true,
-      detail: { href }
-    }));
-  };
-
-  #deactivateMenu() {
+  #deactivateMenu = () => {
     const menu = this.rootElement.querySelector('.menu');
     menu.classList.remove('active');
-  }
+  };
 
   #addMenuToggleEventListener() {
     const menu = this.rootElement.querySelector('.menu');

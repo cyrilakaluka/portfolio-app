@@ -21,7 +21,7 @@ export default ({ resumeLink }) => html`
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, facere quod aliquid assumenda accusamus inventore expedita, quos aut doloribus veritatis voluptatibus fugiat corrupti at ad esse perferendis! Adipisci, quas error.
       </p>
       <div class="content buttons">
-        <app-cta variant="solid" href="#contact">Hire Me</app-cta>
+        <app-cta variant="solid" href="#contact" id="hire-me">Hire Me</app-cta>
         <app-cta variant="outline" href="${resumeLink}">Download Resume</app-cta>
       </div>
       <div class="content socials">
