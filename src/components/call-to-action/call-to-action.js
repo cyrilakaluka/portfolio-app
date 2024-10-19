@@ -1,7 +1,7 @@
 import BaseComponent from '../../common/base-component.js';
-import template from './button-template.js';
+import template from './call-to-action-template.js';
 
-class Button extends BaseComponent {
+class CallToAction extends BaseComponent {
   constructor() {
     super(template);
   }
@@ -11,14 +11,15 @@ class Button extends BaseComponent {
       type: this.getAttribute('type'),
       variant: this.getAttribute('variant'),
       noShadow: this.hasAttribute('no-shadow'),
-      textContent: this.textContent
+      textContent: this.textContent,
+      href: this.getAttribute('href')
     };
 
     this.render(props);
 
-    const buttonElement = this.rootElement.querySelector('.button');
-    buttonElement.addEventListener('click', (event) => {
-      this.dispatchEvent(new CustomEvent('app-button-click', {
+    const callToActionElement = this.rootElement.querySelector('.cta');
+    callToActionElement.addEventListener('click', (event) => {
+      this.dispatchEvent(new CustomEvent('app-cta-click', {
         detail: {
           id: this.getAttribute('id'),
           event
@@ -30,4 +31,4 @@ class Button extends BaseComponent {
   }
 }
 
-customElements.define('app-button', Button);
+customElements.define('app-cta', CallToAction);

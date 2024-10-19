@@ -1,6 +1,6 @@
 import "./icon/icon.js";
 import "./logo/logo.js";
-import "./button/button.js";
+import "./call-to-action/call-to-action.js";
 import "./socials/socials.js";
 import "./layout/layout.js";
 import "./section/section.js";
