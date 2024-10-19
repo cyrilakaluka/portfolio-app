@@ -10,7 +10,7 @@ class NavBar extends BaseComponent {
   connectedCallback() {
     this.render();
     this.#addNavLinksClickEventListeners();
-    this.#addMenuToggleEventListeners();
+    this.#addMenuToggleEventListener();
     this.#addMediaQueryEventListener();
     this.#addOverlayClickEventListener();
   }
@@ -48,13 +48,11 @@ class NavBar extends BaseComponent {
     menu.classList.remove('active');
   }
 
-  #addMenuToggleEventListeners() {
+  #addMenuToggleEventListener() {
+    const menu = this.rootElement.querySelector('.menu');
     const menuToggle = this.rootElement.querySelector('.menu-toggle');
 
-    menuToggle.addEventListener('click', () => {
-      const menu = this.rootElement.querySelector('.menu');
-      menu.classList.toggle('active');
-    });
+    menuToggle.addEventListener('click', () => menu.classList.toggle('active'));
   }
 
   #addMediaQueryEventListener() {
@@ -78,7 +76,6 @@ class NavBar extends BaseComponent {
 
   #addOverlayClickEventListener() {
     const overlay = this.rootElement.querySelector('.overlay');
-
     overlay.addEventListener('click', () => this.#deactivateMenu());
   }
 }
