@@ -62,7 +62,7 @@ const styles = css`
   }
 `;
 
-export default html`
+export default ({ resumeLink }) => html`
   <style>${styles}</style>
   <app-section class="section" data-title="About Me">
     <div class="container">
@@ -80,7 +80,7 @@ export default html`
             I am a results-driven full-stack developer with over nine years of experience in designing and implementing robust software solutions. My expertise spans a wide range of programming languages and technologies, including both front-end and back-end development as well as cloud technologies. Throughout my career, I have consistently delivered high-quality, scalable, and maintainable code, making significant contributions to the success of the projects I have been involved in.
           </div>
         </div>
-        <app-button variant="outline">Download Resume</app-button>
+        <app-cta variant="outline" href="${resumeLink}">Download Resume</app-cta>
       </div>
     </div>
   </app-section>

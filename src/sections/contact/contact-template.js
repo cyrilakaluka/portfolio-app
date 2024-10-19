@@ -15,7 +15,7 @@ export default ({ contact }) => {
           <app-form-input type="email" name="email" placeholder="Email" required autocomplete="off" no-shadow></app-form-input>
           <app-form-input type="text" name="subject" placeholder="Subject" required autocomplete="off" no-shadow></app-form-input>
           <app-form-input type="textarea" name="message" placeholder="Message" required rows="5" autocomplete="off" no-shadow></app-form-input>
-          <app-button type="submit" no-shadow>Send</app-button>
+          <app-cta type="submit" no-shadow>Send</app-cta>
         </form>
         <div class="contact-info">
           <h2 class="title">Contact Info</h2>

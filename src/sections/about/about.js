@@ -1,5 +1,6 @@
 import template from "./about-template.js";
 import BaseComponent from "../../common/base-component.js";
+import ResumeStore from "../../store/resume.js";
 
 class AboutMe extends BaseComponent {
   constructor() {
@@ -7,7 +8,9 @@ class AboutMe extends BaseComponent {
   }
 
   connectedCallback() {
-    this.render();
+    this.render({
+      resumeLink: ResumeStore.getDownloadLink()
+    });
   }
 }
 

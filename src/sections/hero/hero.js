@@ -1,5 +1,6 @@
 import template from "./hero-template.js";
 import BaseComponent from "../../common/base-component.js";
+import ResumeStore from "../../store/resume.js";
 
 class Hero extends BaseComponent {
   #socials = [];
@@ -10,7 +11,9 @@ class Hero extends BaseComponent {
   }
 
   connectedCallback() {
-    this.render();
+    this.render({
+      resumeLink: ResumeStore.getDownloadLink()
+    });
 
     this.#socialsWrapper = this.shadowRoot.querySelector('.socials');
     this.#socials = Array.from(this.#socialsWrapper.querySelectorAll('app-social-media'));

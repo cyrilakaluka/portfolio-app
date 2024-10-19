@@ -1,7 +1,7 @@
 import { html } from "../../common/utils.js";
 import styles from "./hero-styles.js";
 
-export default html`
+export default ({ resumeLink }) => html`
   <style>${styles}</style>
   <div class="nav-offset"></div>
   <div class="container">
@@ -21,8 +21,8 @@ export default html`
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, facere quod aliquid assumenda accusamus inventore expedita, quos aut doloribus veritatis voluptatibus fugiat corrupti at ad esse perferendis! Adipisci, quas error.
       </p>
       <div class="content buttons">
-        <app-button variant="solid">Hire Me</app-button>
-        <app-button variant="outline">Download Resume</app-button>
+        <app-cta variant="solid" href="#contact">Hire Me</app-cta>
+        <app-cta variant="outline" href="${resumeLink}">Download Resume</app-cta>
       </div>
       <div class="content socials">
         <app-social-media name="LinkedIn" state="expanded"></app-social-media>
