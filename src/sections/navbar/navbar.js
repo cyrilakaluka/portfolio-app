@@ -12,6 +12,7 @@ class NavBar extends BaseComponent {
     this.#addNavLinksClickEventListeners();
     this.#addMenuToggleEventListeners();
     this.#addMediaQueryEventListener();
+    this.#addOverlayClickEventListener();
   }
 
   #addNavLinksClickEventListeners() {
@@ -73,6 +74,12 @@ class NavBar extends BaseComponent {
     mediaQuery.addEventListener('change', handleMediaQueryChange);
 
     handleMediaQueryChange(mediaQuery);
+  }
+
+  #addOverlayClickEventListener() {
+    const overlay = this.rootElement.querySelector('.overlay');
+
+    overlay.addEventListener('click', () => this.#deactivateMenu());
   }
 }
 
