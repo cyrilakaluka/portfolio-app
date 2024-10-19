@@ -11,6 +11,7 @@ class NavBar extends BaseComponent {
     this.render();
     this.#addNavLinksClickEventListeners();
     this.#addMenuToggleEventListeners();
+    this.#addMediaQueryEventListener();
   }
 
   #addNavLinksClickEventListeners() {
@@ -53,6 +54,25 @@ class NavBar extends BaseComponent {
       const menu = this.rootElement.querySelector('.menu');
       menu.classList.toggle('active');
     });
+  }
+
+  #addMediaQueryEventListener() {
+    const handleMediaQueryChange = (event) => {
+      const menu = this.rootElement.querySelector('.menu');
+
+      if (event.matches) {
+        menu.classList.add('mobile');
+      }
+      else {
+        menu.classList.remove('mobile');
+        this.#deactivateMenu();
+      }
+    };
+
+    const mediaQuery = window.matchMedia('(max-width: 640px)');
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+    handleMediaQueryChange(mediaQuery);
   }
 }
 

@@ -63,6 +63,10 @@ const styles = css`
     display: none;
   }
 
+  .overlay {
+    display: none;
+  }
+
   @media (max-width: 960px){
     .phone,
     .separator {
@@ -85,6 +89,9 @@ const styles = css`
       height: calc(100vh - var(--nav-height));;
       width: clamp(30rem, 60vw, 60rem);
       transform: translateX(-200%);
+    }
+
+    .menu.mobile .nav-items {
       transition: transform 0.3s ease-in-out;
     }
 
@@ -92,8 +99,9 @@ const styles = css`
       transform: translateX(0);
     }
 
-    .nav-items::before {
-      content: "";
+    .overlay {
+      display: block;
+      position: fixed;
       height: 100vh;
       width: 100vw;
       position: fixed;
@@ -170,6 +178,7 @@ export default () => html`
         <app-icon class="icon" name="call" fill="1" style="font-size: 2.4rem"></app-icon>
         <span class="phone-number">+1 (343) 988 6751</span>
       </div>
+      <div class="overlay"></div>
     </nav>
     <button class="menu-toggle">
       <app-icon class="hamburger" name="menu"></app-icon>
