@@ -12,6 +12,11 @@ class NavBar extends BaseComponent {
     this.#addMenuToggleEventListener();
     this.#addMediaQueryEventListener();
     this.#addOverlayClickEventListener();
+    this.#addIntersectingSectionEventListener();
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('app-intersecting-section', this.#handleIntersectingSectionEvent);
   }
 
   #addNavLinksClickEventListeners() {
@@ -56,6 +61,25 @@ class NavBar extends BaseComponent {
     const overlay = this.rootElement.querySelector('.overlay');
     overlay.addEventListener('click', () => this.#deactivateMenu());
   }
+
+  #addIntersectingSectionEventListener() {
+    document.addEventListener('app-intersecting-section', this.#handleIntersectingSectionEvent);
+  }
+
+  #handleIntersectingSectionEvent = (event) => {
+    const { sectionId } = event.detail;
+    const appLinks = Array.from(this.rootElement.querySelectorAll('app-link'));
+    const isTargetLink = (linkElement) => linkElement.getAttribute('href') === `#${sectionId}`;
+
+    appLinks.forEach(link => {
+      if (isTargetLink(link)) {
+        link.classList.add('intersecting');
+        return;
+      }
+
+      link.classList.remove('intersecting');
+    });
+  };
 }
 
 customElements.define('app-navbar', NavBar);

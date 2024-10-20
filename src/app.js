@@ -10,6 +10,7 @@ class App extends HTMLElement {
   connectedCallback() {
     this.#render();
     this.#addScrollToSectionEventListener();
+    this.#addIntersectionObserver();
   }
 
   #render() {
@@ -42,6 +43,28 @@ class App extends HTMLElement {
       });
     });
   }
+
+  #addIntersectionObserver() {
+    const observer = new IntersectionObserver(this.#handleIntersection, { threshold: 0.5 });
+    const observableSections = Array.from(this.querySelectorAll('app-layout > *:not(#navbar):not(#footer)'));
+    observableSections.forEach((section) => observer.observe(section));
+  }
+
+  #handleIntersection = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const { id } = entry.target;
+
+        this.dispatchEvent(new CustomEvent('app-intersecting-section', {
+          detail: {
+            sectionId: id
+          },
+          bubbles: true,
+          composed: true
+        }));
+      }
+    });
+  };
 }
 
 customElements.define('app-root', App);

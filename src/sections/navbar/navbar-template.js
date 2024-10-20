@@ -31,7 +31,8 @@ const styles = css`
     list-style: none;
   }
 
-  .nav-link:hover {
+  app-link:hover,
+  app-link.intersecting {
     color: var(--accent-color);
   }
 
@@ -65,6 +66,10 @@ const styles = css`
 
   .overlay {
     display: none;
+  }
+
+  app-icon {
+    font-size: 2.4rem;
   }
 
   @media (max-width: 960px){
@@ -170,12 +175,13 @@ export default () => html`
       <ul class="nav-links">
         <li class="nav-link"><app-link href="#home">Home</app-link></li>
         <li class="nav-link"><app-link href="#about">About</app-link></li>
+        <li class="nav-link"><app-link href="#skills">Skills</app-link></li>
         <li class="nav-link"><app-link href="#resume">Resume</app-link></li>
         <li class="nav-link"><app-link href="#contact">Contact</app-link></li>
       </ul>
       <span class="separator">|</span>
       <div class="phone">
-        <app-icon class="icon" name="call" fill="1" style="font-size: 2.4rem"></app-icon>
+        <app-icon class="icon" name="call" fill="1"></app-icon>
         <span class="phone-number">+1 (343) 988 6751</span>
       </div>
       <div class="overlay"></div>
