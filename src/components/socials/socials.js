@@ -3,10 +3,10 @@ import BaseComponent from '../../common/base-component.js';
 
 class SocialMediaLink extends BaseComponent {
   static socialLinks = {
-    'LinkedIn': 'https://www.linkedin.com/in/cyrilakaluka/',
-    'Facebook': 'https://www.facebook.com/cyrilakaluka/',
-    'Twitter': 'https://twitter.com/cyrilakaluka',
-    'WhatsApp': 'https://wa.me/2349037482415'
+    'LinkedIn': 'https://www.linkedin.com/in/ccakaluka/',
+    'Facebook': 'https://www.facebook.com/bushlee247',
+    'Twitter': 'https://x.com/cakaluka',
+    'WhatsApp': 'https://wa.me/qr/PZOY2XJ64HAZH1'
   };
 
   constructor() {

@@ -1,7 +1,6 @@
 import template from './contact-template.js';
 import BaseComponent from '../../common/base-component.js';
 import Dialog from '../../components/dialog/dialog.js';
-import { html } from '../../common/utils.js';
 
 class Contact extends BaseComponent {
   #publicAccessKey = "086e1a0e-e4ea-45c5-b678-2a3ef2d23c9c";
@@ -10,7 +9,7 @@ class Contact extends BaseComponent {
     phone: "+1 (343) 882 9369",
     address: {
       street: "90 Woodridge Crescent",
-      city: "Nepean",
+      city: "Ottawa",
       province: "Ontario",
       postalCode: "K2B7T1",
       country: "Canada"
