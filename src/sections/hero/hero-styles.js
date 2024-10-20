@@ -94,6 +94,7 @@ export default css`
     grid-column: 2 / 3;
     grid-row: 1 / 999;
     width: 100%;
+    transform: scaleX(-1);
   }
 
   .media {
