@@ -1,5 +1,6 @@
 import template from './navbar-template.js';
 import BaseComponent from '../../common/base-component.js';
+import ContactStore from '../../store/contact.js';
 
 class NavBar extends BaseComponent {
   constructor() {
@@ -7,7 +8,11 @@ class NavBar extends BaseComponent {
   }
 
   connectedCallback() {
-    this.render();
+    const props = {
+      phone: ContactStore.getContactInfo().phone
+    };
+
+    this.render(props);
     this.#addNavLinksClickEventListeners();
     this.#addMenuToggleEventListener();
     this.#addMediaQueryEventListener();

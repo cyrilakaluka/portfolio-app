@@ -161,7 +161,7 @@ const styles = css`
   }
 `;
 
-export default () => html`
+export default ({ phone }) => html`
   <style>${styles}</style>
   <app-link href="#home">
     <app-logo class="logo"></app-logo>
@@ -178,7 +178,7 @@ export default () => html`
       <span class="separator">|</span>
       <div class="phone">
         <app-icon class="icon" name="call" fill="1"></app-icon>
-        <span class="phone-number">+1 (343) 988 6751</span>
+        <span class="phone-number">${phone}</span>
       </div>
       <div class="overlay"></div>
     </nav>
