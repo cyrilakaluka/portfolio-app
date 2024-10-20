@@ -31,15 +31,20 @@ const styles = css`
     list-style: none;
   }
 
-  app-link:hover,
-  app-link.intersecting {
-    color: var(--accent-color);
-  }
-
   app-link {
     text-decoration: none;
     color: inherit;
     text-transform: uppercase;
+  }
+
+  app-link.intersecting {
+    color: var(--accent-color);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    app-link:hover {
+      color: var(--accent-color);
+    }
   }
 
   .phone {
