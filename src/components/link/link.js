@@ -20,6 +20,10 @@ export default class Link extends BaseComponent {
 
     linkElement.addEventListener('click', event => {
       if (this.href.startsWith('#')) {
+        if (window.location.hash !== this.href) {
+          window.history.pushState(null, null, this.href);
+        }
+
         this.#dispatchScrollToSectionEvent(event);
       }
       else {
