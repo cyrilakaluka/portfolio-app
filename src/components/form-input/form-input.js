@@ -50,8 +50,8 @@ class FormInput extends BaseComponent {
     this.render(this.#getProps());
 
     // Initialize input and error elements
-    this.#inputElement = this.rootElement.querySelector('#input');
-    this.#errorElement = this.rootElement.querySelector('#error');
+    this.#inputElement = this.rootElement.querySelector('.form-input');
+    this.#errorElement = this.rootElement.querySelector('#form-error');
 
     // Set content of textarea
     if (this.type === 'textarea') {

@@ -5,7 +5,7 @@ const styles = css`
     --input-border-color: #232935;
   }
 
-  #input {
+  .form-input {
     padding: 1.2rem 2rem;
     border: 1px solid var(--input-border-color);
     border-radius: 0.7rem;
@@ -16,15 +16,15 @@ const styles = css`
     transition: all 0.4s ease;
   }
 
-  #input:focus {
+  .form-input:focus {
     border-color: var(--accent-color);
   }
 
-  #input.error {
+  .form-input.error {
     border-color: var(--error-color);
   }
 
-  #error {
+  #form-error {
     color: var(--error-color);
     font-size: 1.4rem;
     margin-top: 1.5rem;
@@ -34,22 +34,22 @@ const styles = css`
   }
 `;
 
-const error = html`<div id="error"></div>`;
+const error = html`<div id="form-error"></div>`;
 
-const input = ({ type, ...rest }) => {
+const renderInput = ({ type, ...rest }) => {
   const inputMode = type === 'number' ? 'numeric' : type === 'email' ? 'email' : 'text';
   const propsAsString = getPropsAsString(rest) + ` inputmode="${inputMode}"`;
 
   return html`
-    <input id="input" type="text" ${propsAsString}/>
+    <input class="form-input" type="text" ${propsAsString}/>
     ${error}
   `;
 };
 
-const textarea = ({ value, ...rest }) => {
+const renderTextarea = ({ value, ...rest }) => {
   const propsAsString = getPropsAsString(rest);
   return html`
-    <textarea id="input" ${propsAsString} style="resize: none;">${value}</textarea>
+    <textarea class="form-input" ${propsAsString} style="resize: none;">${value}</textarea>
     ${error}
   `;
 };
@@ -65,5 +65,5 @@ function getPropsAsString(props) {
 
 export default (props) => html`
     <style>${styles}</style>
-    ${props.type === "textarea" ? textarea(props) : input(props)}
+    ${props.type === "textarea" ? renderTextarea(props) : renderInput(props)}
 `;
