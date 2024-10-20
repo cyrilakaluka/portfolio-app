@@ -16,9 +16,9 @@ export default ({ resumeLink }) => html`
       </div>
       <h3 class="content greeting">Hey there!, I'm</h3>
       <h1 class="content name">Cyril<br>Akaluka</h1>
-      <h2 class="content job-role">Full-Stack Developer</h2>
+      <h2 class="content job-role">Software Engineer</h2>
       <p class="content summary">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, facere quod aliquid assumenda accusamus inventore expedita, quos aut doloribus veritatis voluptatibus fugiat corrupti at ad esse perferendis! Adipisci, quas error.
+      I'm a Software Engineer with 9+ years of experience in building scalable web applications and solving complex problems. Specializing in .NET technologies and cloud solutions, I craft seamless digital experiences. Explore my portfolio, skills, and let's create something amazing together!
       </p>
       <div class="content buttons">
         <app-cta variant="solid" href="#contact" id="hire-me">Hire Me</app-cta>

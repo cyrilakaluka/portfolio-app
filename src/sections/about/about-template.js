@@ -46,6 +46,14 @@ const styles = css`
     opacity: 0.7;
   }
 
+  .summary p:not(:first-of-type) {
+    margin-top: 1.25rem;
+  }
+
+  .summary p:not(:last-of-type){
+    margin-bottom: 0.5rem;
+  }
+
   app-button {
     width: max-content;
   }
@@ -75,9 +83,12 @@ export default ({ resumeLink }) => html`
       <div class="content">
         <div class="text">
           <div class="introduction">Hi There! I'm Cyril Akaluka</div>
-          <div class="job-role">Full-Stack Developer</div>
+          <div class="job-role">Software Engineer</div>
           <div class="summary">
-            I am a results-driven full-stack developer with over nine years of experience in designing and implementing robust software solutions. My expertise spans a wide range of programming languages and technologies, including both front-end and back-end development as well as cloud technologies. Throughout my career, I have consistently delivered high-quality, scalable, and maintainable code, making significant contributions to the success of the projects I have been involved in.
+            <p>I’m a passionate Software Engineer with over 9 years of experience designing and developing high-quality software solutions. Specializing in .NET technologies like C#, ASP.NET, and .NET, I also bring expertise in front-end development with React and Web Components, alongside cloud infrastructure experience with AWS and Azure. My career has been driven by solving complex challenges and building scalable, efficient applications.</p>
+            <p>I've led projects from concept to completion, using technologies like Docker and Kubernetes to build modern, containerized solutions. With a strong focus on cloud technologies and DevOps practices, I ensure reliable and continuous software delivery.</p>
+            <p>In addition to my technical expertise, I’m passionate about building software that truly meets user needs, and I’m constantly looking for ways to improve both the user experience and the development process. As I move forward in my career, my goal is to create my own business and develop software solutions that I can bring to market, helping others benefit from the technology I build.</p>
+            <p>Outside of coding, I love learning about the latest tech trends and exploring new frameworks, always seeking to expand my skill set and keep up with the ever-evolving software landscape.</p>
           </div>
         </div>
         <app-cta variant="outline" href="${resumeLink}">Download Resume</app-cta>
