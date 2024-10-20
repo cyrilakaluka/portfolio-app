@@ -52,17 +52,17 @@ class App extends HTMLElement {
 
   #handleIntersection = (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const { id } = entry.target;
+      if (!entry.isIntersecting) return;
 
-        this.dispatchEvent(new CustomEvent('app-intersecting-section', {
-          detail: {
-            sectionId: id
-          },
-          bubbles: true,
-          composed: true
-        }));
-      }
+      const { id } = entry.target;
+
+      this.dispatchEvent(new CustomEvent('app-intersecting-section', {
+        detail: {
+          sectionId: id
+        },
+        bubbles: true,
+        composed: true
+      }));
     });
   };
 }
