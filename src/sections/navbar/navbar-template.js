@@ -72,18 +72,14 @@ const styles = css`
     font-size: 2.4rem;
   }
 
-  @media (max-width: 960px){
+  @media (max-width: 1000px){
     .phone,
     .separator {
       display: none;
     }
-
-    .nav-links {
-      gap: 5rem;
-    }
   }
 
-  @media (max-width: 640px){
+  @media (max-width: 700px){
     .nav-items {
       flex-direction: column;
       justify-content: start;
