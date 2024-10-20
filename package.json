@@ -4,8 +4,9 @@
   "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "build": "webpack",
-    "dev": "rollup -c -w --sourcemap"
+    "dev": "rollup -c -w --sourcemap",
+    "build": "rollup -c --sourcemap",
+    "build:prod": "rollup -c"
   },
   "keywords": [],
   "author": "",
