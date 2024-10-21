@@ -6,6 +6,7 @@ import livereload from 'rollup-plugin-livereload';
 
 const DIST_DIR = 'dist';
 const SERVER_PORT = 3000;
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 export default {
   input: 'src/app.js',
@@ -17,12 +18,12 @@ export default {
         { src: 'public/*', dest: DIST_DIR },
       ]
     }),
-    serve({
+    isDevelopment && serve({
       port: SERVER_PORT,
       open: true,
       contentBase: DIST_DIR,
     }),
-    livereload({
+    isDevelopment && livereload({
       watch: DIST_DIR,
       port: SERVER_PORT,
       delay: 1000

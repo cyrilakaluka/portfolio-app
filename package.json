@@ -4,15 +4,16 @@
   "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "dev": "rollup -c -w --sourcemap",
+    "dev": "cross-env NODE_ENV=development rollup -c -w --sourcemap",
     "build": "rollup -c --sourcemap",
     "build:deploy": "rollup -c"
   },
   "keywords": [],
-  "author": "",
+  "author": "Cyril Akaluka",
   "license": "ISC",
-  "description": "",
+  "description": "Portfolio Web App",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "rollup": "^2.38.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-livereload": "^2.0.5",
