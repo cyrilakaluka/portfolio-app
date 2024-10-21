@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "rollup -c -w --sourcemap",
     "build": "rollup -c --sourcemap",
-    "build:prod": "rollup -c"
+    "build:deploy": "rollup -c"
   },
   "keywords": [],
   "author": "",
