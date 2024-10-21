@@ -16,12 +16,6 @@ env:
   URL: ${{ github.repository_owner }}.github.io/${{ inputs.deploy_repo }}
   ARTIFACT_NAME: build
 
-permissions:
-  repository-projects:
-    write
-  contents:
-    read
-
 jobs:
   build:
     name: Build
@@ -53,6 +47,8 @@ jobs:
     environment:
       name: ${{ inputs.enivronment }}
       url: ${{ env.URL }}
+    permissions:
+      contents: write
     steps:
       - name: Checkout Deployment Repo (${{ inputs.deploy_repo }})
         uses: actions/checkout@v2

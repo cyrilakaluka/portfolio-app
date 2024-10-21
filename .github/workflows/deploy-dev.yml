@@ -12,8 +12,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  call-deploy-template:
+  use-deploy-template:
     uses: ./.github/workflows/deploy-template.yml
     with:
       enivronment: development
       deploy_repo: portfolio-dev
+    secrets: inherit
+    permissions:
+      contents: write
