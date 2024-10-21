@@ -4,9 +4,10 @@
   "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development rollup -c -w --sourcemap",
-    "build": "rollup -c --sourcemap",
-    "build:deploy": "rollup -c"
+    "clean": "rimraf dist",
+    "dev": "npm run clean && cross-env NODE_ENV=development rollup -c -w --sourcemap",
+    "build": "npm run clean && rollup -c --sourcemap",
+    "build:deploy": "npm run clean && rollup -c"
   },
   "keywords": [],
   "author": "Cyril Akaluka",
@@ -14,6 +15,7 @@
   "description": "Portfolio Web App",
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "rimraf": "^6.0.1",
     "rollup": "^2.38.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-livereload": "^2.0.5",
