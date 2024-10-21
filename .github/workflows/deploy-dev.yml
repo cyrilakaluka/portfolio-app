@@ -9,6 +9,8 @@ on:
       - .vscode/**
       - .gitignore
 
+  workflow_dispatch:
+
 jobs:
   call-deploy-template:
     uses: ./.github/workflows/deploy-template.yml
