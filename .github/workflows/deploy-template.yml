@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.enivronment }}
-      url: ${{ env.URL }}
+      url: https://${{ env.URL }}
     permissions:
       contents: write
     steps:
@@ -71,11 +71,14 @@ jobs:
 
       - name: Configure CNAME
         run: echo ${{ env.URL }} > deploy/CNAME
+
+      - name: Set GitHub Actions as Commit Author
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
       
       - name: Commit & Push
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@users.noreply.github.com
           git add .
           git commit -m $GITHUB_SHA
           git push
