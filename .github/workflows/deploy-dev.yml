@@ -1,0 +1,17 @@
+name: Development Build & Deploy
+on: 
+  push:
+    branches:
+      - dev
+    paths-ignore:
+      - .github/workflows/**
+      - **.md
+      - .vscode/**
+      - .gitignore
+
+jobs:
+  call-deploy-template:
+    uses: ./.github/workflows/deploy-template.yml
+    with:
+      enivronment: development
+      deploy_repo: portfolio-dev

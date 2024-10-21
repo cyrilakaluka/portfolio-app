@@ -1,0 +1,17 @@
+name: Production Build & Deploy
+on: 
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .github/workflows/**
+      - **.md
+      - .vscode/**
+      - .gitignore
+
+jobs:
+  call-deploy-template:
+    uses: ./.github/workflows/deploy-template.yml
+    with:
+      enivronment: production
+      deploy_repo: portfolio
