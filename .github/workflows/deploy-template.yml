@@ -14,13 +14,24 @@ on:
 
 env:
   URL: ${{ github.repository_owner }}.github.io/${{ inputs.deploy_repo }}
-  ARTIFACT_NAME: build
 
 jobs:
-  build:
-    name: Build
+  build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.enivronment }}
+      url: https://${{ env.URL }}
+    permissions:
+      contents: write
     steps:
+      - name: Set GitHub Actions as Commit Author
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+
+      - name: Build
+        run: echo "::group::Build"
+
       - name: Checkout Working Repo (${{ github.repository }})
         uses: actions/checkout@v4
 
@@ -35,33 +46,18 @@ jobs:
       - name: Build
         run: npm run build:deploy
 
-      - name: Upload Artifact (${{ env.ARTIFACT_NAME }})
-        uses: actions/upload-artifact@v4
-        with:
-          path: dist
-          name: ${{ env.ARTIFACT_NAME }}
+      - name: End Build Group
+        run: echo "::endgroup::"
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: ${{ inputs.enivronment }}
-      url: https://${{ env.URL }}
-    permissions:
-      contents: write
-    steps:
+      - name: Deploy
+        run: echo "::group::Deploy"
+
       - name: Checkout Deployment Repo (${{ inputs.deploy_repo }})
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/${{ inputs.deploy_repo }}
           token: ${{ secrets.REPO_PUSH_TOKEN }}
           path: deploy
-
-      - name: Download Artifact (${{ env.ARTIFACT_NAME }})
-        uses: actions/download-artifact@v4
-        with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: dist
 
       - name: Copy Files
         run: cp -r dist/* deploy
@@ -71,11 +67,6 @@ jobs:
 
       - name: Configure CNAME
         run: echo ${{ env.URL }} > deploy/CNAME
-
-      - name: Set GitHub Actions as Commit Author
-        run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
       
       - name: Commit & Push
         run: |
@@ -83,3 +74,6 @@ jobs:
           git commit -m $GITHUB_SHA
           git push
         working-directory: deploy
+
+      - name: End Deploy Group
+        run: echo "::endgroup::"
