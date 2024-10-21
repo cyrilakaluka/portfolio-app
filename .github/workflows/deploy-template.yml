@@ -1,4 +1,5 @@
 name: Build & Deploy Template
+run-name: "Deploy to ${{ inputs.enivronment }}: v${{ inputs.version_number }}"
 
 on:
   workflow_call:
@@ -11,6 +12,11 @@ on:
         required: true
         type: string
         description: The name of the repository associated with the environment to deploy to.
+      version_number:
+        required: false
+        type: string
+        description: The version number of the deployment.
+        default: ${{github.run_id}}.${{ github.run_number }}.${{ github.run_attempt }}
 
 env:
   URL: ${{ github.repository_owner }}.github.io/${{ inputs.deploy_repo }}
@@ -29,9 +35,6 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
 
-      - name: Build
-        run: echo "::group::Build"
-
       - name: Checkout Working Repo (${{ github.repository }})
         uses: actions/checkout@v4
 
@@ -45,12 +48,6 @@ jobs:
 
       - name: Build
         run: npm run build:deploy
-
-      - name: End Build Group
-        run: echo "::endgroup::"
-
-      - name: Deploy
-        run: echo "::group::Deploy"
 
       - name: Checkout Deployment Repo (${{ inputs.deploy_repo }})
         uses: actions/checkout@v4
@@ -67,6 +64,9 @@ jobs:
 
       - name: Configure CNAME
         run: echo ${{ env.URL }} > deploy/CNAME
+
+      - name: Write Version Number
+        run: echo ${{ inputs.version_number }} > deploy/.version
       
       - name: Commit & Push
         run: |
@@ -74,6 +74,3 @@ jobs:
           git commit -m $GITHUB_SHA
           git push
         working-directory: deploy
-
-      - name: End Deploy Group
-        run: echo "::endgroup::"
