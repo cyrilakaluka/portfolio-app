@@ -30,7 +30,7 @@ export default {
     minifyHTML(),
     copy({
       targets: [
-        { src: PUBLIC_DIR, dest: DIST_DIR },
+        { src: `${PUBLIC_DIR}/*`, dest: DIST_DIR },
       ]
     }),
     ...devPlugins
