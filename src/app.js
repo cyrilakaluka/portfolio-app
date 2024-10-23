@@ -1,16 +1,22 @@
 import './sections/index.js';
 import './components/index.js';
 import { html } from './common/utils.js';
+import LocalStorageService from './services/local-storage-service.js';
+
 
 class App extends HTMLElement {
+  #defaultTheme = 'dark';
+
   constructor() {
     super();
   }
 
   connectedCallback() {
     this.#render();
+    this.#loadTheme();
     this.#addScrollToSectionEventListener();
     this.#addIntersectionObserver();
+    this.#addToggleThemeCommandEventListener();
   }
 
   #render() {
@@ -65,6 +71,37 @@ class App extends HTMLElement {
       }));
     });
   };
+
+  #addToggleThemeCommandEventListener() {
+    document.addEventListener('app-toggle-theme-command', _ => {
+      const isDarkMode = document.documentElement.classList.toggle('dark-theme');
+      const theme = isDarkMode ? 'dark' : 'light';
+
+      this.#dispatchThemeChangeEvent(theme);
+      LocalStorageService.set('theme', theme);
+    });
+  }
+
+  #loadTheme() {
+    const theme = LocalStorageService.get('theme') || this.#defaultTheme;
+
+    document.documentElement.classList.toggle('dark-theme', theme === 'dark');
+
+    this.#dispatchThemeChangeEvent(theme);
+  }
+
+  #dispatchThemeChangeEvent(theme) {
+    const appThemeChangeEvent = new CustomEvent('app-theme-change', {
+      detail: {
+        theme,
+        altTheme: theme === 'dark' ? 'light' : 'dark'
+      },
+      bubbles: true,
+      composed: true
+    });
+
+    this.dispatchEvent(appThemeChangeEvent);
+  }
 }
 
 customElements.define('app-root', App);

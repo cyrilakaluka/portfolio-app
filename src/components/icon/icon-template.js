@@ -1,6 +1,6 @@
 import { html, css } from "../../common/utils.js";
 
-const styles = ({ fill, wght, grad, opsz, color }) => {
+const styles = ({ fill, wght, grad, opsz, color, cursor = 'default' }) => {
   const fontVariationSettings = `'FILL' ${fill || 0}, 'wght' ${wght || 400}, 'GRAD' ${grad || 0}, 'opsz' ${opsz || 24}`;
   const iconColor = color || 'var(--icon-color)';
 
@@ -14,7 +14,7 @@ const styles = ({ fill, wght, grad, opsz, color }) => {
     .material-symbols-rounded {
       font-variation-settings: ${fontVariationSettings};
       font-size: 1em;
-      cursor: default;
+      cursor: ${cursor};
       color: ${iconColor};
     }
 

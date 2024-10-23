@@ -3,13 +3,16 @@ import BaseComponent from '../../common/base-component.js';
 import ContactStore from '../../store/contact.js';
 
 class NavBar extends BaseComponent {
+  #mobileMediaQuerySpec = '(max-width: 800px)';
+
   constructor() {
-    super(template);
+    super(template, { listenThemeChangeEvent: true });
   }
 
   connectedCallback() {
     const props = {
-      phone: ContactStore.getContactInfo().phone
+      phone: ContactStore.getContactInfo().phone,
+      mobileMediaQuerySpec: this.#mobileMediaQuerySpec
     };
 
     this.render(props);
@@ -18,10 +21,13 @@ class NavBar extends BaseComponent {
     this.#addMediaQueryEventListener();
     this.#addOverlayClickEventListener();
     this.#addIntersectingSectionEventListener();
+    this.#addThemeToggleClickEventListener();
+    this.#addThemeChangeEventListener();
   }
 
   disconnectedCallback() {
-    document.removeEventListener('app-intersecting-section', this.#handleIntersectingSectionEvent);
+    this.#removeIntersectingSectionEventListener();
+    this.#removeThemeChangeEventListener();
   }
 
   #addNavLinksClickEventListeners() {
@@ -54,7 +60,7 @@ class NavBar extends BaseComponent {
       }
     };
 
-    const mediaQuery = window.matchMedia('(max-width: 640px)');
+    const mediaQuery = window.matchMedia(this.#mobileMediaQuerySpec);
     mediaQuery.addEventListener('change', handleMediaQueryChange);
 
     handleMediaQueryChange(mediaQuery);
@@ -69,6 +75,10 @@ class NavBar extends BaseComponent {
     document.addEventListener('app-intersecting-section', this.#handleIntersectingSectionEvent);
   }
 
+  #removeIntersectingSectionEventListener() {
+    document.removeEventListener('app-intersecting-section', this.#handleIntersectingSectionEvent);
+  }
+
   #handleIntersectingSectionEvent = (event) => {
     const { sectionId } = event.detail;
     const appLinks = Array.from(this.rootElement.querySelectorAll('app-link'));
@@ -81,6 +91,37 @@ class NavBar extends BaseComponent {
         link.classList.add('intersecting');
       }
     });
+  };
+
+  #addThemeToggleClickEventListener() {
+    const themeToggle = this.rootElement.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      const appThemeToggleRequestEvent = new CustomEvent('app-toggle-theme-command', {
+        bubbles: true,
+        composed: true
+      });
+
+      this.dispatchEvent(appThemeToggleRequestEvent);
+    });
+  }
+
+  #addThemeChangeEventListener() {
+    document.addEventListener('app-theme-change', this.#handleThemeChangeEvent);
+  }
+
+  #removeThemeChangeEventListener() {
+    document.removeEventListener('app-theme-change', this.#handleThemeChangeEvent);
+  }
+
+  #handleThemeChangeEvent = (event) => {
+    const { theme, altTheme } = event.detail;
+    const themeToggle = this.rootElement.querySelector('.theme-toggle');
+    const themeToggleLabel = this.rootElement.querySelector('.theme-toggle-label');
+    const switchText = `Switch to ${altTheme} theme`;
+
+    this.setAttribute('data-theme', theme);
+    themeToggle.setAttribute('title', switchText);
+    themeToggleLabel.textContent = switchText;
   };
 }
 
