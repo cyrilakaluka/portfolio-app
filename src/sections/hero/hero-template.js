@@ -25,10 +25,10 @@ export default ({ resumeLink }) => html`
         <app-cta variant="outline" href="${resumeLink}">Download Resume</app-cta>
       </div>
       <div class="content socials">
-        <app-social-media name="LinkedIn" state="expanded"></app-social-media>
-        <app-social-media name="Facebook" state="expand-on-hover"></app-social-media>
-        <app-social-media name="Twitter" state="expand-on-hover"></app-social-media>
-        <app-social-media name="WhatsApp" state="expand-on-hover"></app-social-media>
+        <app-social-media name="LinkedIn" state="expanded" color="#0077B5"></app-social-media>
+        <app-social-media name="Facebook" state="expand-on-hover" color="#1877F2"></app-social-media>
+        <app-social-media name="Twitter" state="expand-on-hover" color="#1DA1F2"></app-social-media>
+        <app-social-media name="WhatsApp" state="expand-on-hover" color="#25D366"></app-social-media>
       </div>
     </div>
   </div>

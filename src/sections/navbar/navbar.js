@@ -6,8 +6,10 @@ class NavBar extends BaseComponent {
   #mobileMediaQuerySpec = '(max-width: 800px)';
 
   constructor() {
-    super(template, { listenThemeChangeEvent: true });
+    super(template);
   }
+
+  static observedAttributes = ['data-theme'];
 
   connectedCallback() {
     const props = {
@@ -22,12 +24,18 @@ class NavBar extends BaseComponent {
     this.#addOverlayClickEventListener();
     this.#addIntersectingSectionEventListener();
     this.#addThemeToggleClickEventListener();
-    this.#addThemeChangeEventListener();
+    super.addAppThemeChangeListener();
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'data-theme' && oldValue !== newValue) {
+      this.#updateAppThemeDependentElements(newValue, oldValue);
+    }
   }
 
   disconnectedCallback() {
     this.#removeIntersectingSectionEventListener();
-    this.#removeThemeChangeEventListener();
+    super.removeAppThemeChangeListener();
   }
 
   #addNavLinksClickEventListeners() {
@@ -105,21 +113,11 @@ class NavBar extends BaseComponent {
     });
   }
 
-  #addThemeChangeEventListener() {
-    document.addEventListener('app-theme-change', this.#handleThemeChangeEvent);
-  }
-
-  #removeThemeChangeEventListener() {
-    document.removeEventListener('app-theme-change', this.#handleThemeChangeEvent);
-  }
-
-  #handleThemeChangeEvent = (event) => {
-    const { theme, altTheme } = event.detail;
+  #updateAppThemeDependentElements(_, prevTheme) {
     const themeToggle = this.rootElement.querySelector('.theme-toggle');
     const themeToggleLabel = this.rootElement.querySelector('.theme-toggle-label');
-    const switchText = `Switch to ${altTheme} theme`;
+    const switchText = `Switch to ${prevTheme} theme`;
 
-    this.setAttribute('data-theme', theme);
     themeToggle.setAttribute('title', switchText);
     themeToggleLabel.textContent = switchText;
   };

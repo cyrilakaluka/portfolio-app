@@ -44,6 +44,10 @@ const styles = ({ title }) => css`
     transform: translate(-50%, -50%);
     color: var(--dark-grey);
     z-index: -1;
+    opacity: 0.04;
+  }
+
+  :host([data-theme="dark"]) .title::after {
     opacity: 0.2;
   }
 

@@ -14,7 +14,7 @@ const styles = ({ fill, wght, grad, opsz, color, cursor = 'default' }) => {
     .material-symbols-rounded {
       font-variation-settings: ${fontVariationSettings};
       font-size: 1em;
-      cursor: ${cursor};
+      cursor: ${cursor || 'default'};
       color: ${iconColor};
     }
 

@@ -43,6 +43,14 @@ class BaseComponent extends HTMLElement {
     }, {});
   }
 
+  addAppThemeChangeListener() {
+    document.addEventListener('app-theme-change', this.#handleAppThemeChange);
+  }
+
+  removeAppThemeChangeListener() {
+    document.removeEventListener('app-theme-change', this.#handleAppThemeChange);
+  }
+
   #attachShadowIfEnabled() {
     if (this.useShadow && !this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
@@ -80,6 +88,11 @@ class BaseComponent extends HTMLElement {
   #toCamelCase(str) {
     return str.replace(/-./g, x => x[1].toUpperCase());
   }
+
+  #handleAppThemeChange = (event) => {
+    const { theme } = event.detail;
+    this.setAttribute('data-theme', theme);
+  };
 }
 
 export default BaseComponent;

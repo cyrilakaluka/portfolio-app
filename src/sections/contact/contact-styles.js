@@ -44,6 +44,7 @@ export default css`
 
   .contact:hover app-icon {
     border-color: var(--accent-color);
+    box-shadow: 0 0 0 1px var(--accent-color);
   }
 
   .contact .info {

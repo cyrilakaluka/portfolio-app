@@ -22,10 +22,16 @@ class SocialMediaLink extends BaseComponent {
       name: this.name.toLocaleLowerCase(),
       size: this.getAttribute('size'),
       displayName: this.name,
-      href: SocialMediaLink.socialLinks[this.name]
+      href: SocialMediaLink.socialLinks[this.name],
+      color: this.getAttribute('color'),
     };
 
     this.render(props);
+    super.addAppThemeChangeListener();
+  }
+
+  disconnectedCallback() {
+    super.removeAppThemeChangeListener();
   }
 }
 

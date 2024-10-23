@@ -24,7 +24,7 @@ const styles = css`
     position: fixed;
     width: 100%;
     background-color: var(--background-color);
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    box-shadow: var(--navbar-box-shadow);
     z-index: 99999;
   }
 

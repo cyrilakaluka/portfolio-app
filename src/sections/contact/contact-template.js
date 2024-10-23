@@ -45,10 +45,10 @@ export default ({ contact }) => {
           <div class="socials-connect">
             <div>Visit my social profile and let's get connected</div>
             <div class="socials">
-              <app-social-media name="LinkedIn" state="expand-on-hover"></app-social-media>
-              <app-social-media name="Facebook" state="expand-on-hover"></app-social-media>
-              <app-social-media name="Twitter" state="expand-on-hover"></app-social-media>
-              <app-social-media name="WhatsApp" state="expand-on-hover"></app-social-media>
+              <app-social-media name="LinkedIn" state="expand-on-hover" color="#0077B5"></app-social-media>
+              <app-social-media name="Facebook" state="expand-on-hover" color="#1877F2"></app-social-media>
+              <app-social-media name="Twitter" state="expand-on-hover" color="#1DA1F2"></app-social-media>
+              <app-social-media name="WhatsApp" state="expand-on-hover" color="#25D366"></app-social-media>
             </div>
           </div>
         </div>
