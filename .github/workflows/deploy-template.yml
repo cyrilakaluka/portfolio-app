@@ -17,16 +17,23 @@ on:
         type: string
         description: The version number of the deployment.
         default: ${{github.run_id}}.${{ github.run_number }}.${{ github.run_attempt }}
-
-env:
-  URL: ${{ github.repository_owner }}.github.io/${{ inputs.deploy_repo }}
+      url:
+        required: false
+        type: string
+        description: The environment's URL.
+        default: ${{ github.repository_owner }}.github.io/${{ inputs.deploy_repo }}
+      cname:
+        required: false
+        type: string
+        description: The Cannonical Name (CNAME) of the environment.
+        default: ${{ inputs.url }}
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.enivronment }}
-      url: https://${{ env.URL }}
+      url: https://${{ inputs.url }}
     permissions:
       contents: write
     steps:
@@ -63,7 +70,7 @@ jobs:
         run: touch deploy/.nojekyll
 
       - name: Configure CNAME
-        run: echo ${{ env.URL }} > deploy/CNAME
+        run: echo ${{ inputs.cname }} > deploy/CNAME
 
       - name: Write Version Number
         run: echo ${{ inputs.version_number }} > deploy/.version

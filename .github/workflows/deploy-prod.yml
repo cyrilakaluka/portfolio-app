@@ -18,6 +18,7 @@ jobs:
     with:
       enivronment: production
       deploy_repo: portfolio
+      cname: cyril.is-a.dev
     secrets: inherit
     permissions:
       contents: write
