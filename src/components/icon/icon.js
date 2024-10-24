@@ -15,7 +15,8 @@ class GoogleMaterialIcon extends BaseComponent {
       grad: this.getAttribute('grad'),
       opsz: this.getAttribute('opsz'),
       color: this.getAttribute('color'),
-      enframe: this.hasAttribute('enframe')
+      enframe: this.hasAttribute('enframe'),
+      cursor: this.getAttribute('cursor')
     };
 
     this.render(props);

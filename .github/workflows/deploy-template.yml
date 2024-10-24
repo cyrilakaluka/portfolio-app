@@ -1,4 +1,5 @@
 name: Build & Deploy Template
+run-name: "Deploy to ${{ inputs.enivronment }}: v${{ inputs.version_number }}"
 
 on:
   workflow_call:
@@ -11,18 +12,31 @@ on:
         required: true
         type: string
         description: The name of the repository associated with the environment to deploy to.
+      version_number:
+        required: false
+        type: string
+        description: The version number of the deployment.
+        default: ${{github.run_id}}.${{ github.run_number }}.${{ github.run_attempt }}
 
 env:
   URL: ${{ github.repository_owner }}.github.io/${{ inputs.deploy_repo }}
-  ARTIFACT_NAME: build
 
 jobs:
-  build:
-    name: Build
+  build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.enivronment }}
+      url: https://${{ env.URL }}
+    permissions:
+      contents: write
     steps:
+      - name: Set GitHub Actions as Commit Author
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+
       - name: Checkout Working Repo (${{ github.repository }})
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -33,42 +47,30 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build:deploy
+        run: npm run build
 
-      - name: Upload Artifact (${{ env.ARTIFACT_NAME }})
-        uses: actions/upload-artifact@v4
-        with:
-          path: dist
-          name: ${{ env.ARTIFACT_NAME }}
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: ${{ inputs.enivronment }}
-      url: ${{ env.URL }}
-    permissions:
-      contents: write
-    steps:
       - name: Checkout Deployment Repo (${{ inputs.deploy_repo }})
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/${{ inputs.deploy_repo }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REPO_PUSH_TOKEN }}
           path: deploy
 
-      - name: Download Artifact (${{ env.ARTIFACT_NAME }})
-        uses: actions/download-artifact@v4
-        with:
-          name: $${{ env.ARTIFACT_NAME }}
-          path: dist
+      - name: Copy Files
+        run: cp -r dist/* deploy
 
-      - name: Deploy to ${{ inputs.enivronment }} environment
+      - name: Disable Jekyll
+        run: touch deploy/.nojekyll
+
+      - name: Configure CNAME
+        run: echo ${{ env.URL }} > deploy/CNAME
+
+      - name: Write Version Number
+        run: echo ${{ inputs.version_number }} > deploy/.version
+      
+      - name: Commit & Push
         run: |
-          cp -r dist/* deploy
-          cd deploy
-          touch .nojekyll
-          echo ${{ env.URL}} > CNAME
           git add .
           git commit -m $GITHUB_SHA
           git push
+        working-directory: deploy

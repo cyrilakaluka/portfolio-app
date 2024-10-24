@@ -3,13 +3,18 @@ import BaseComponent from '../../common/base-component.js';
 import ContactStore from '../../store/contact.js';
 
 class NavBar extends BaseComponent {
+  #mobileMediaQuerySpec = '(max-width: 800px)';
+
   constructor() {
     super(template);
   }
 
+  static observedAttributes = ['data-theme'];
+
   connectedCallback() {
     const props = {
-      phone: ContactStore.getContactInfo().phone
+      phone: ContactStore.getContactInfo().phone,
+      mobileMediaQuerySpec: this.#mobileMediaQuerySpec
     };
 
     this.render(props);
@@ -18,10 +23,19 @@ class NavBar extends BaseComponent {
     this.#addMediaQueryEventListener();
     this.#addOverlayClickEventListener();
     this.#addIntersectingSectionEventListener();
+    this.#addThemeToggleClickEventListener();
+    super.addAppThemeChangeListener();
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'data-theme' && oldValue !== newValue) {
+      this.#updateAppThemeDependentElements(newValue, oldValue);
+    }
   }
 
   disconnectedCallback() {
-    document.removeEventListener('app-intersecting-section', this.#handleIntersectingSectionEvent);
+    this.#removeIntersectingSectionEventListener();
+    super.removeAppThemeChangeListener();
   }
 
   #addNavLinksClickEventListeners() {
@@ -54,7 +68,7 @@ class NavBar extends BaseComponent {
       }
     };
 
-    const mediaQuery = window.matchMedia('(max-width: 640px)');
+    const mediaQuery = window.matchMedia(this.#mobileMediaQuerySpec);
     mediaQuery.addEventListener('change', handleMediaQueryChange);
 
     handleMediaQueryChange(mediaQuery);
@@ -69,6 +83,10 @@ class NavBar extends BaseComponent {
     document.addEventListener('app-intersecting-section', this.#handleIntersectingSectionEvent);
   }
 
+  #removeIntersectingSectionEventListener() {
+    document.removeEventListener('app-intersecting-section', this.#handleIntersectingSectionEvent);
+  }
+
   #handleIntersectingSectionEvent = (event) => {
     const { sectionId } = event.detail;
     const appLinks = Array.from(this.rootElement.querySelectorAll('app-link'));
@@ -81,6 +99,27 @@ class NavBar extends BaseComponent {
         link.classList.add('intersecting');
       }
     });
+  };
+
+  #addThemeToggleClickEventListener() {
+    const themeToggle = this.rootElement.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      const appThemeToggleRequestEvent = new CustomEvent('app-toggle-theme-command', {
+        bubbles: true,
+        composed: true
+      });
+
+      this.dispatchEvent(appThemeToggleRequestEvent);
+    });
+  }
+
+  #updateAppThemeDependentElements(_, prevTheme) {
+    const themeToggle = this.rootElement.querySelector('.theme-toggle');
+    const themeToggleLabel = this.rootElement.querySelector('.theme-toggle-label');
+    const switchText = `Switch to ${prevTheme} theme`;
+
+    themeToggle.setAttribute('title', switchText);
+    themeToggleLabel.textContent = switchText;
   };
 }
 

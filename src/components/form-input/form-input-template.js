@@ -2,6 +2,11 @@ import { html, css } from "../../common/utils.js";
 
 const styles = css`
   :host {
+    --input-border-color: #d1d5db;
+  }
+
+  :host([data-theme="dark"]),
+  [data-theme="dark"] {
     --input-border-color: #232935;
   }
 
@@ -13,11 +18,12 @@ const styles = css`
     outline: none;
     background-color: var(--alt-background-color);
     color: var(--font-color);
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
   }
 
   .form-input:focus {
     border-color: var(--accent-color);
+    box-shadow: 0 0 0 1px var(--accent-color);
   }
 
   .form-input.error {
@@ -30,7 +36,7 @@ const styles = css`
     margin-top: 1.5rem;
     min-height: 1em;
     line-height: 0;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
   }
 `;
 

@@ -56,7 +56,6 @@ export default css`
   .summary {
     font-size: 2rem;
     opacity: 0.7;
-    /* text-align: justify; */
     margin-bottom: 4rem;
   }
 
@@ -68,14 +67,19 @@ export default css`
   }
 
   .socials {
+    --socials-border-color: #cccccc;
     display: flex;
     gap: 2rem;
     justify-content: space-between;
     width: min-content;
     padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--hero-socials-background-color);
     border-radius: 5rem;
-    border: 0.1rem solid #232935;
+    border: 0.1rem solid var(--socials-border-color);
+  }
+
+  :host([data-theme="dark"]) .socials {
+    --socials-border-color: #232935;
   }
 
   .socials:hover {
@@ -84,6 +88,8 @@ export default css`
 
   app-social-media {
     font-size: 2.4rem;
+    border-radius: 5rem;
+    background-color: var(--background-color);
   }
 
   /*

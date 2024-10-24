@@ -25,6 +25,12 @@ class Hero extends BaseComponent {
     mediaQuery.addEventListener('change', this.#handleMediaQuery);
 
     this.#handleMediaQuery(mediaQuery);
+
+    super.addAppThemeChangeListener();
+  }
+
+  disconnectedCallback() {
+    super.removeAppThemeChangeListener();
   }
 
   #expandAllSocialLinks = () => {

@@ -72,6 +72,12 @@ class FormInput extends BaseComponent {
     if (this.required) {
       this.#validators.push(this.#validateRequiredInput);
     }
+
+    super.addAppThemeChangeListener();
+  }
+
+  disconnectedCallback() {
+    super.removeAppThemeChangeListener();
   }
 
   validate() {

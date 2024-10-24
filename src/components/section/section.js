@@ -12,6 +12,12 @@ class Section extends BaseComponent {
     };
 
     this.render(props);
+
+    super.addAppThemeChangeListener();
+  }
+
+  disconnectedCallback() {
+    super.removeAppThemeChangeListener();
   }
 }
 
