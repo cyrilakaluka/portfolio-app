@@ -12,6 +12,12 @@ export default class SkillBar extends BaseComponent {
   connectedCallback() {
     var levelAsPercentage = this.#getLevelAsPercentage(this.#props.level);
     this.render({ levelAsPercentage, ...this.#props });
+
+    super.addAppThemeChangeListener();
+  }
+
+  disconnectedCallback() {
+    super.removeAppThemeChangeListener();
   }
 
   #getLevelAsPercentage(levelString) {

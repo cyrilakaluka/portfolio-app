@@ -197,7 +197,8 @@ const data = [
         description: "Critical thinking and problem-solving skills for debugging and optimizing code.",
         icon: {
           type: "image",
-          url: "./assets/head-idea.svg"
+          url: "./assets/head-idea.svg",
+          invertColorOnDarkBackground: true
         }
       },
       {
@@ -206,7 +207,8 @@ const data = [
         description: "Communicating technical concepts to both technical and non-technical stakeholders.",
         icon: {
           type: "image",
-          url: "./assets/communication.svg"
+          url: "./assets/communication.svg",
+          invertColorOnDarkBackground: true
         }
       },
       {
@@ -215,7 +217,8 @@ const data = [
         description: "Working collaboratively in cross-functional teams and mentoring junior developers.",
         icon: {
           type: "image",
-          url: "./assets/team.svg"
+          url: "./assets/team.svg",
+          invertColorOnDarkBackground: true
         }
       },
       {
@@ -224,7 +227,8 @@ const data = [
         description: "Ensuring projects are completed on time and to a high standard.",
         icon: {
           type: "image",
-          url: "./assets/time-success.svg"
+          url: "./assets/time-success.svg",
+          invertColorOnDarkBackground: true
         }
       },
       {
@@ -233,7 +237,8 @@ const data = [
         description: "Self-motivated and willing to take on new challenges and responsibilities.",
         icon: {
           type: "image",
-          url: "./assets/book.svg"
+          url: "./assets/book.svg",
+          invertColorOnDarkBackground: true
         }
       }
     ]

@@ -1,6 +1,6 @@
 import { html, css } from "../../../common/utils.js";
 
-const styles = ({ levelAsPercentage }) => css`
+const styles = ({ levelAsPercentage, invertIconColorOnDarkBackground }) => css`
   @import url(https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css);
 
   :host {
@@ -55,10 +55,14 @@ const styles = ({ levelAsPercentage }) => css`
     background-color: var(--accent-color);
   }
 
+  :host([data-theme="dark"]) .image-frame,
+  :host([data-theme="dark"]) .icon {
+    filter: ${invertIconColorOnDarkBackground ? "invert(1)" : "none"}
+  }
 `;
 
 export default ({ name, levelAsPercentage, description, icon }) => html`
-  <style>${styles({ levelAsPercentage })}</style>
+  <style>${styles({ levelAsPercentage, invertIconColorOnDarkBackground: icon.invertColorOnDarkBackground })}</style>
   <div class="container" data-tooltip="${description}">
     ${icon.type === "image" ? html`
         <div class="image-frame">
