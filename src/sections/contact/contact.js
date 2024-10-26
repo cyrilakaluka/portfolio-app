@@ -5,7 +5,6 @@ import ContactStore from '../../store/contact.js';
 
 class Contact extends BaseComponent {
   #publicAccessKey = "086e1a0e-e4ea-45c5-b678-2a3ef2d23c9c";
-  #contact = ContactStore.getContactInfo();
   #formElement;
   #formInputElements;
   #dialog;
@@ -17,7 +16,7 @@ class Contact extends BaseComponent {
   }
 
   connectedCallback() {
-    this.render({ contact: this.#contact });
+    this.render({ contact: ContactStore.getContactInfo() });
 
     this.#formInputElements = Array.from(this.shadowRoot.querySelectorAll('app-form-input'));
     this.#formElement = this.shadowRoot.querySelector('#contact-form');

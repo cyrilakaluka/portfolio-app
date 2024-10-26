@@ -38,7 +38,7 @@ export default ({ contact }) => {
               <app-icon name="location_on" enframe></app-icon>
               <div class="info">
                 <div class="name">Address</div>
-                <div class="value">${street}, ${city}, ${province}, ${postalCode}, ${country}</div>
+                <div class="value">${city}, ${province}, ${country}</div>
               </div>
             </div>
           </div>
