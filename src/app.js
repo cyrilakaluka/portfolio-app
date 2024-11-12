@@ -13,10 +13,10 @@ class App extends HTMLElement {
 
   connectedCallback() {
     this.#render();
-    this.#loadTheme();
     this.#addScrollToSectionEventListener();
     this.#addIntersectionObserver();
     this.#addToggleThemeCommandEventListener();
+    this.#loadTheme();
   }
 
   #render() {

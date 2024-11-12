@@ -113,10 +113,10 @@ class NavBar extends BaseComponent {
     });
   }
 
-  #updateAppThemeDependentElements(_, prevTheme) {
+  #updateAppThemeDependentElements(theme, prevTheme) {
     const themeToggle = this.rootElement.querySelector('.theme-toggle');
     const themeToggleLabel = this.rootElement.querySelector('.theme-toggle-label');
-    const switchText = `Switch to ${prevTheme} theme`;
+    const switchText = `Switch to ${prevTheme || (theme === 'light' ? 'dark' : 'light')} theme`;
 
     themeToggle.setAttribute('title', switchText);
     themeToggleLabel.textContent = switchText;
